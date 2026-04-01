@@ -21,7 +21,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
     Route::resource('siswa', SiswaController::class);
-    Route::resource('guru', GuruController::class);
+    Route::get('/guru', [GuruController::class, 'index'])->name('guru.index');
+    Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
+    Route::put('/guru/{guru}', [GuruController::class, 'update'])->name('guru.update');
+    Route::delete('/guru/{guru}', [GuruController::class, 'destroy'])->name('guru.destroy');
+    Route::get('/guru/export', [GuruController::class, 'export'])->name('guru.export');
+    Route::post('/guru/import', [GuruController::class, 'import'])->name('guru.import');
     Route::resource('kelas', KelasController::class);
     Route::resource('mata-pelajaran', MataPelajaranController::class);
     Route::resource('pengumuman', PengumumanController::class);
