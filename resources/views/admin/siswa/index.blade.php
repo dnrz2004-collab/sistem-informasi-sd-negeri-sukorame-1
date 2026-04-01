@@ -13,18 +13,32 @@
 </div>
 
 <div class="content-card">
-    <div class="table-toolbar">
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Cari siswa..." onkeyup="filterTable()">
+    <form method="GET" action="{{ route('admin.siswa.index') }}">
+        <div class="table-toolbar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Cari nama / NISN...">
+            </div>
+            <div class="filter-group">
+                <select class="form-select" name="kelas_id" onchange="this.form.submit()">
+                    <option value="">Semua Kelas</option>
+                    @foreach($kelasList as $k)
+                        <option value="{{ $k->id }}" {{ request('kelas_id') == $k->id ? 'selected' : '' }}>
+                            Kelas {{ $k->nama_kelas }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-search"></i> Cari
+            </button>
+            @if(request('cari') || request('kelas_id'))
+                <a href="{{ route('admin.siswa.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Reset
+                </a>
+            @endif
         </div>
-        <div class="filter-group">
-            <select class="form-select" id="filterKelas">
-                <option value="">Semua Kelas</option>
-                {{-- Populate via controller --}}
-            </select>
-        </div>
-    </div>
+    </form>
 
     <div class="table-responsive">
         <table class="data-table" id="siswaTable">

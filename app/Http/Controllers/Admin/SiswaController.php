@@ -8,10 +8,25 @@ use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = Siswa::with(['kelas', 'user'])->paginate(15);
-        return view('admin.siswa.index', compact('siswa'));
+        $query = Siswa::with(['kelas', 'user']);
+
+        if ($request->filled('cari')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nama_lengkap', 'like', '%' . $request->cari . '%')
+                ->orWhere('nisn', 'like', '%' . $request->cari . '%');
+            });
+        }
+
+        if ($request->filled('kelas_id')) {
+            $query->where('kelas_id', $request->kelas_id);
+        }
+
+        $siswa     = $query->paginate(15)->withQueryString();
+        $kelasList = Kelas::orderBy('tingkat')->get();
+
+        return view('admin.siswa.index', compact('siswa', 'kelasList'));
     }
 
     public function create()
