@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Pengumuman extends Model
 {
     protected $table = 'pengumuman';
-    //
+
+    protected $fillable = [
+        'judul',
+        'isi',
+        'user_id',
+        'untuk',
+        'kategori',
+        'status',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
