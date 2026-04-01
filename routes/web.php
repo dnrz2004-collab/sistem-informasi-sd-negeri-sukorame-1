@@ -28,7 +28,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/guru/export', [GuruController::class, 'export'])->name('guru.export');
     Route::post('/guru/import', [GuruController::class, 'import'])->name('guru.import');
     Route::resource('kelas', KelasController::class);
-    Route::resource('mata-pelajaran', MataPelajaranController::class);
+    Route::get('/mata-pelajaran', [MataPelajaranController::class, 'index'])->name('mata-pelajaran.index');
+    Route::post('/mata-pelajaran', [MataPelajaranController::class, 'store'])->name('mata-pelajaran.store');
+    Route::put('/mata-pelajaran/{mata_pelajaran}', [MataPelajaranController::class, 'update'])->name('mata-pelajaran.update');
+    Route::delete('/mata-pelajaran/{mata_pelajaran}', [MataPelajaranController::class, 'destroy'])->name('mata-pelajaran.destroy');
     Route::resource('pengumuman', PengumumanController::class);
     Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah');
     Route::put('/sekolah', [SekolahController::class, 'update'])->name('sekolah.update');
