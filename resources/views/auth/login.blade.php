@@ -77,7 +77,7 @@
                 </form>
 
                 <p class="forgot-link">
-                    <a href="#">Lupa password?</a>
+                    <a href="{{ route('password.request') }}">Lupa password?</a>
                 </p>
             </div>
         </div>
