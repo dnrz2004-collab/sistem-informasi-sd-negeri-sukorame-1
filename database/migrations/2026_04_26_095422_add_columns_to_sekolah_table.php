@@ -12,29 +12,32 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('sekolah', function (Blueprint $table) {
-            // Kepala sekolah
-            $table->string('foto_kepsek')->nullable()->after('nip_kepsek');
-            $table->text('sambutan_kepsek')->nullable()->after('foto_kepsek');
+            if (!Schema::hasColumn('sekolah', 'foto_kepsek'))
+                $table->string('foto_kepsek')->nullable()->after('nip_kepala_sekolah');
 
-            // Identitas tambahan
-            $table->string('website')->nullable()->after('email');
-            $table->string('kode_pos')->nullable()->after('website');
-            $table->string('kelurahan')->nullable()->after('kode_pos');
-            $table->string('kecamatan')->nullable()->after('kelurahan');
-            $table->string('kota')->default('Kota Kediri')->after('kecamatan');
-            $table->string('provinsi')->default('Jawa Timur')->after('kota');
-            $table->decimal('latitude', 10, 7)->nullable()->after('provinsi');
-            $table->decimal('longitude', 10, 7)->nullable()->after('latitude');
+            if (!Schema::hasColumn('sekolah', 'sambutan_kepsek'))
+                $table->text('sambutan_kepsek')->nullable()->after('foto_kepsek');
 
-            // Media sosial
-            $table->string('facebook')->nullable()->after('longitude');
-            $table->string('instagram')->nullable()->after('facebook');
-            $table->string('youtube')->nullable()->after('instagram');
+            if (!Schema::hasColumn('sekolah', 'latitude'))
+                $table->decimal('latitude', 10, 7)->nullable()->after('provinsi');
 
-            // Operasional
-            $table->string('tahun_berdiri')->nullable()->after('youtube');
-            $table->string('tahun_ajaran_aktif')->nullable()->after('tahun_berdiri'); // contoh: 2024/2025
-            $table->string('semester_aktif')->nullable()->after('tahun_ajaran_aktif'); // 1 atau 2
+            if (!Schema::hasColumn('sekolah', 'longitude'))
+                $table->decimal('longitude', 10, 7)->nullable()->after('latitude');
+
+            if (!Schema::hasColumn('sekolah', 'facebook'))
+                $table->string('facebook')->nullable()->after('longitude');
+
+            if (!Schema::hasColumn('sekolah', 'instagram'))
+                $table->string('instagram')->nullable()->after('facebook');
+
+            if (!Schema::hasColumn('sekolah', 'youtube'))
+                $table->string('youtube')->nullable()->after('instagram');
+
+            if (!Schema::hasColumn('sekolah', 'tahun_ajaran_aktif'))
+                $table->string('tahun_ajaran_aktif')->nullable()->after('tahun_berdiri');
+
+            if (!Schema::hasColumn('sekolah', 'semester_aktif'))
+                $table->string('semester_aktif')->nullable()->after('tahun_ajaran_aktif');
         });
     }
 

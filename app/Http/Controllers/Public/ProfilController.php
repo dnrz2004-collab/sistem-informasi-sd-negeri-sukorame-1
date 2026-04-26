@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Sekolah;
 use App\Models\Guru;
+use App\Models\Komite;
 
 class ProfilController extends Controller
 {
@@ -36,11 +37,13 @@ class ProfilController extends Controller
         ]));
     }
 
+
     public function komite()
     {
-        return view('public.profil.komite', array_merge($this->baseData(), [
-            'pageTitle' => 'Komite Sekolah — SDN Sukorame 1',
-        ]));
+        $komite = Komite::aktif()->orderBy('urutan')->get();
+        $pageTitle = 'Komite Sekolah — SDN Sukorame 1';
+
+        return view('public.profil.komite', compact('komite', 'pageTitle'));
     }
 
     public function guru()
