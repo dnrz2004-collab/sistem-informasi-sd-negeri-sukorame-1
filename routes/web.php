@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;                        // ← tambah ini
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\{DashboardController as AdminDashboard,
     SiswaController, GuruController, KelasController,
@@ -11,8 +12,10 @@ use App\Http\Controllers\Wali\{DashboardController as WaliDashboard,
 use App\Http\Controllers\Siswa\{DashboardController as SiswaDashboard,
     ElearningController, RaportSiswaController};
 
+// ─── PUBLIC ──────────────────────────────────────────────────────────────────
+Route::get('/', [HomeController::class, 'index'])->name('home'); // ← ubah dari redirect ke HomeController
+
 // ─── AUTH ────────────────────────────────────────────────────────────────────
-Route::get('/', fn() => redirect()->route('login'));
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
