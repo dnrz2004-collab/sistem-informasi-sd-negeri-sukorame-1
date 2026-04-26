@@ -45,8 +45,12 @@ class ProfilController extends Controller
 
     public function guru()
     {
-        // Sesuaikan model/query dengan struktur database Anda
-        $guru = Guru::orderBy('nama')->get();
+        // nama ada di tabel users, filter role=guru supaya siswa tidak ikut terpilih
+        $guru = Guru::with('user')
+                    ->where('status', 'aktif')
+                    ->whereHas('user', fn($q) => $q->where('role', 'guru'))
+                    ->get()
+                    ->sortBy(fn($g) => $g->user?->name);
 
         return view('public.profil.guru', array_merge($this->baseData(), [
             'pageTitle' => 'Profil Guru & Karyawan — SDN Sukorame 1',

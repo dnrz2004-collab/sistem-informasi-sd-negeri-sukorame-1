@@ -13,7 +13,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        :root { --red: #C0392B; --red-dark: #922B21; --red-light: #FEF2F2; }
+        :root { --red: #1D4ED8; --red-dark: #1e3a8a; --red-light: #EFF6FF; }
         * { font-family: 'Plus Jakarta Sans', sans-serif; }
         html { scroll-behavior: smooth; }
         #main-nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.09); }
@@ -45,7 +45,7 @@
         .badge-section {
             display: inline-block; font-size: 11px; font-weight: 700;
             color: var(--red); background: var(--red-light);
-            border: 1px solid #FECACA;
+            border: 1px solid #bfdbfe;
             padding: 3px 12px; border-radius: 999px;
             text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px;
         }
@@ -57,7 +57,7 @@
 <body class="bg-white antialiased">
 
 {{-- TOPBAR --}}
-<div class="bg-red-900 text-white text-xs py-1.5 hidden md:block">
+<div class="bg-blue-900 text-white text-xs py-1.5 hidden md:block">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <div class="flex items-center gap-5 opacity-90">
             <span><i class="fa fa-phone mr-1"></i>(0354) 123456</span>
@@ -80,9 +80,9 @@
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-red-700 flex items-center justify-center text-white font-black text-sm">SD</div>
+                <div class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center text-white font-black text-sm">SD</div>
                 <div class="leading-tight hidden sm:block">
-                    <p class="font-bold text-red-700 text-sm">SDN Sukorame 1</p>
+                    <p class="font-bold text-blue-700 text-sm">SDN Sukorame 1</p>
                     <p class="text-gray-400 text-xs">Kota Kediri</p>
                 </div>
             </a>
@@ -91,13 +91,13 @@
             <div class="hidden lg:flex items-center gap-0.5 text-sm font-semibold text-gray-700">
 
                 <a href="{{ route('home') }}"
-                   class="px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('home') ? 'nav-active' : '' }}">
+                   class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors {{ request()->routeIs('home') ? 'nav-active' : '' }}">
                     Beranda
                 </a>
 
                 {{-- Profil --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('profil.*') ? 'nav-active' : '' }}">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors {{ request()->routeIs('profil.*') ? 'nav-active' : '' }}">
                         Profil <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
@@ -114,7 +114,7 @@
 
                 {{-- Akademik --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('akademik.*') ? 'nav-active' : '' }}">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors {{ request()->routeIs('akademik.*') ? 'nav-active' : '' }}">
                         Akademik <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
@@ -131,7 +131,7 @@
 
                 {{-- Berita --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('berita.*') ? 'nav-active' : '' }}">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors {{ request()->routeIs('berita.*') ? 'nav-active' : '' }}">
                         Berita <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
@@ -144,7 +144,7 @@
 
                 {{-- Galeri --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('galeri.*') ? 'nav-active' : '' }}">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors {{ request()->routeIs('galeri.*') ? 'nav-active' : '' }}">
                         Galeri <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
@@ -155,7 +155,7 @@
 
                 {{-- PPDB --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('ppdb.*') ? 'nav-active' : '' }}">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors {{ request()->routeIs('ppdb.*') ? 'nav-active' : '' }}">
                         PPDB <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
@@ -168,7 +168,7 @@
 
                 {{-- Layanan --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('layanan.*') ? 'nav-active' : '' }}">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors {{ request()->routeIs('layanan.*') ? 'nav-active' : '' }}">
                         Layanan <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
@@ -183,7 +183,7 @@
                 </div>
 
                 <a href="{{ route('login') }}"
-                   class="ml-2 flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">
+                   class="ml-2 flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">
                     <i class="fa fa-sign-in-alt"></i> Login
                 </a>
             </div>
@@ -253,12 +253,12 @@
                 </button>
                 <div class="mob-sub bg-gray-50 rounded-b-lg">
                     @foreach ($subs as $s)
-                    <a href="{{ route($s['route']) }}" class="block px-5 py-2 text-xs text-gray-600 border-b border-gray-100 last:border-0 hover:text-red-700">{{ $s['label'] }}</a>
+                    <a href="{{ route($s['route']) }}" class="block px-5 py-2 text-xs text-gray-600 border-b border-gray-100 last:border-0 hover:text-blue-700">{{ $s['label'] }}</a>
                     @endforeach
                 </div>
             </div>
             @endforeach
-            <a href="{{ route('login') }}" class="block mt-3 text-center bg-red-700 text-white font-bold py-3 rounded-xl">
+            <a href="{{ route('login') }}" class="block mt-3 text-center bg-blue-700 text-white font-bold py-3 rounded-xl">
                 <i class="fa fa-graduation-cap mr-2"></i>Login SIMAS
             </a>
         </div>
@@ -273,7 +273,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="lg:col-span-2">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 rounded-full bg-red-700 flex items-center justify-center text-white font-black">SD</div>
+                    <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-white font-black">SD</div>
                     <div>
                         <p class="font-bold text-white">SD Negeri Sukorame 1</p>
                         <p class="text-xs">Kota Kediri · NPSN: {{ $sekolah?->npsn ?? '20533972' }}</p>
@@ -281,48 +281,48 @@
                 </div>
                 <p class="text-sm leading-relaxed mb-4 max-w-sm">Membentuk generasi cerdas, berkarakter, dan berprestasi berlandaskan iman dan teknologi melalui platform SIMAS.</p>
                 <div class="space-y-2 text-sm">
-                    <div class="flex gap-2"><i class="fa fa-map-marker-alt text-red-400 mt-0.5 w-4"></i><span>Jl. Sukorame No. 1, Kota Kediri, Jawa Timur</span></div>
-                    <div class="flex gap-2"><i class="fa fa-phone text-red-400 w-4"></i><span>(0354) 123456</span></div>
-                    <div class="flex gap-2"><i class="fa fa-envelope text-red-400 w-4"></i><span>sdn.sukorame1@kediri.go.id</span></div>
+                    <div class="flex gap-2"><i class="fa fa-map-marker-alt text-blue-400 mt-0.5 w-4"></i><span>Jl. Sukorame No. 1, Kota Kediri, Jawa Timur</span></div>
+                    <div class="flex gap-2"><i class="fa fa-phone text-blue-400 w-4"></i><span>(0354) 123456</span></div>
+                    <div class="flex gap-2"><i class="fa fa-envelope text-blue-400 w-4"></i><span>sdn.sukorame1@kediri.go.id</span></div>
                 </div>
                 <div class="flex gap-3 mt-5">
                     @foreach (['facebook-f','instagram','youtube'] as $s)
-                    <a href="#" class="w-9 h-9 bg-gray-800 hover:bg-red-700 rounded-full flex items-center justify-center text-sm transition-colors"><i class="fab fa-{{ $s }}"></i></a>
+                    <a href="#" class="w-9 h-9 bg-gray-800 hover:bg-blue-700 rounded-full flex items-center justify-center text-sm transition-colors"><i class="fab fa-{{ $s }}"></i></a>
                     @endforeach
                 </div>
             </div>
             <div>
                 <h4 class="text-white font-semibold text-sm mb-4 pb-2 border-b border-gray-800">Profil Sekolah</h4>
                 <div class="space-y-2 text-sm">
-                    <a href="{{ route('profil.visi-misi') }}" class="block hover:text-red-400 transition-colors">Visi &amp; Misi</a>
-                    <a href="{{ route('profil.sejarah') }}" class="block hover:text-red-400 transition-colors">Sejarah Sekolah</a>
-                    <a href="{{ route('profil.struktur') }}" class="block hover:text-red-400 transition-colors">Struktur Organisasi</a>
-                    <a href="{{ route('profil.guru') }}" class="block hover:text-red-400 transition-colors">Profil Guru</a>
-                    <a href="{{ route('profil.sarana') }}" class="block hover:text-red-400 transition-colors">Sarana &amp; Prasarana</a>
-                    <a href="{{ route('profil.akreditasi') }}" class="block hover:text-red-400 transition-colors">Akreditasi</a>
-                    <a href="{{ route('profil.prestasi') }}" class="block hover:text-red-400 transition-colors">Prestasi Sekolah</a>
+                    <a href="{{ route('profil.visi-misi') }}" class="block hover:text-blue-400 transition-colors">Visi &amp; Misi</a>
+                    <a href="{{ route('profil.sejarah') }}" class="block hover:text-blue-400 transition-colors">Sejarah Sekolah</a>
+                    <a href="{{ route('profil.struktur') }}" class="block hover:text-blue-400 transition-colors">Struktur Organisasi</a>
+                    <a href="{{ route('profil.guru') }}" class="block hover:text-blue-400 transition-colors">Profil Guru</a>
+                    <a href="{{ route('profil.sarana') }}" class="block hover:text-blue-400 transition-colors">Sarana &amp; Prasarana</a>
+                    <a href="{{ route('profil.akreditasi') }}" class="block hover:text-blue-400 transition-colors">Akreditasi</a>
+                    <a href="{{ route('profil.prestasi') }}" class="block hover:text-blue-400 transition-colors">Prestasi Sekolah</a>
                 </div>
             </div>
             <div>
                 <h4 class="text-white font-semibold text-sm mb-4 pb-2 border-b border-gray-800">Layanan &amp; SIMAS</h4>
                 <div class="space-y-2 text-sm">
-                    <a href="{{ route('berita.index') }}" class="block hover:text-red-400 transition-colors">Berita Sekolah</a>
-                    <a href="{{ route('berita.pengumuman') }}" class="block hover:text-red-400 transition-colors">Pengumuman</a>
-                    <a href="{{ route('galeri.foto') }}" class="block hover:text-red-400 transition-colors">Galeri Foto</a>
-                    <a href="{{ route('akademik.kalender') }}" class="block hover:text-red-400 transition-colors">Kalender Pendidikan</a>
-                    <a href="{{ route('ppdb.info') }}" class="block hover:text-red-400 transition-colors">PPDB Online</a>
-                    <a href="{{ route('layanan.mutasi') }}" class="block hover:text-red-400 transition-colors">Mutasi Siswa</a>
-                    <a href="{{ route('layanan.nisn') }}" class="block hover:text-red-400 transition-colors">Cek NISN</a>
-                    <a href="{{ route('layanan.unduhan') }}" class="block hover:text-red-400 transition-colors">Unduhan Dokumen</a>
+                    <a href="{{ route('berita.index') }}" class="block hover:text-blue-400 transition-colors">Berita Sekolah</a>
+                    <a href="{{ route('berita.pengumuman') }}" class="block hover:text-blue-400 transition-colors">Pengumuman</a>
+                    <a href="{{ route('galeri.foto') }}" class="block hover:text-blue-400 transition-colors">Galeri Foto</a>
+                    <a href="{{ route('akademik.kalender') }}" class="block hover:text-blue-400 transition-colors">Kalender Pendidikan</a>
+                    <a href="{{ route('ppdb.info') }}" class="block hover:text-blue-400 transition-colors">PPDB Online</a>
+                    <a href="{{ route('layanan.mutasi') }}" class="block hover:text-blue-400 transition-colors">Mutasi Siswa</a>
+                    <a href="{{ route('layanan.nisn') }}" class="block hover:text-blue-400 transition-colors">Cek NISN</a>
+                    <a href="{{ route('layanan.unduhan') }}" class="block hover:text-blue-400 transition-colors">Unduhan Dokumen</a>
                 </div>
-                <a href="{{ route('login') }}" class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-colors mt-5">
+                <a href="{{ route('login') }}" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-colors mt-5">
                     <i class="fa fa-graduation-cap"></i> Login SIMAS
                 </a>
             </div>
         </div>
         <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs">
             <p>&copy; {{ date('Y') }} SD Negeri Sukorame 1 Kota Kediri. Hak Cipta Dilindungi.</p>
-            <p class="mt-2 md:mt-0">Didukung <span class="text-red-400 font-semibold">SIMAS</span> — Sistem Informasi &amp; E-Learning</p>
+            <p class="mt-2 md:mt-0">Didukung <span class="text-blue-400 font-semibold">SIMAS</span> — Sistem Informasi &amp; E-Learning</p>
         </div>
     </div>
 </footer>

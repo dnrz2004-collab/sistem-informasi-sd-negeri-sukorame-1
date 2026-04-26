@@ -21,15 +21,15 @@
             @foreach ($guru as $g)
             <div class="bg-white rounded-2xl p-5 border border-gray-100 text-center hover:shadow-md transition-shadow">
                 <div class="w-20 h-20 rounded-full bg-gray-100 border-2 border-red-100 overflow-hidden mx-auto mb-3 flex items-center justify-center">
-                    @if($g->foto)
-                        <img src="{{ asset('storage/' . $g->foto) }}" alt="{{ $g->nama }}" class="w-full h-full object-cover">
+                    @if($g->user?->foto)
+                        <img src="{{ asset('storage/' . $g->user->foto) }}" alt="{{ $g->user->name }}" class="w-full h-full object-cover">
                     @else
                         <i class="fa fa-user text-gray-300 text-3xl"></i>
                     @endif
                 </div>
-                <p class="font-bold text-gray-800 text-xs leading-snug">{{ $g->nama }}</p>
-                <p class="text-gray-500 text-xs mt-1">{{ $g->jabatan ?? $g->mata_pelajaran ?? 'Guru' }}</p>
-                @if($g->nip ?? false)
+                <p class="font-bold text-gray-800 text-xs leading-snug">{{ $g->user?->name ?? '—' }}</p>
+                <p class="text-gray-500 text-xs mt-1">{{ $g->mata_pelajaran ?? 'Guru' }}</p>
+                @if($g->nip)
                 <span class="inline-block mt-2 text-xs bg-red-50 text-red-700 px-2 py-0.5 rounded-full font-semibold">NIP: {{ $g->nip }}</span>
                 @endif
             </div>
