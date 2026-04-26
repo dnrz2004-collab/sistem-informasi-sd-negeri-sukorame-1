@@ -26,11 +26,8 @@
     .keung-icon { transition: transform .3s; }
     .hover-lift:hover .keung-icon { transform: scale(1.15) rotate(-5deg); }
 
-    /* Berita thumbnail */
-    .news-thumb { height: 180px; object-fit: cover; width: 100%; }
-
-    /* Profil Guru card */
-    .guru-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+    /* Maps */
+    .maps-container { border-radius: 16px; overflow: hidden; border: 3px solid #fee2e2; }
 </style>
 @endpush
 
@@ -59,7 +56,7 @@
                         Membentuk generasi cerdas, berkarakter, dan berprestasi berlandaskan iman &amp; teknologi.
                     </p>
                     <div class="flex flex-wrap gap-3">
-                        <a href="#profil" class="bg-white text-red-700 font-bold px-6 py-3 rounded-xl hover:bg-yellow-50 transition-colors shadow-lg text-sm">
+                        <a href="{{ route('profil.visi-misi') }}" class="bg-white text-red-700 font-bold px-6 py-3 rounded-xl hover:bg-yellow-50 transition-colors shadow-lg text-sm">
                             <i class="fa fa-info-circle mr-2"></i>Profil Sekolah
                         </a>
                         <a href="{{ route('login') }}" class="border-2 border-white/60 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/15 transition-colors text-sm">
@@ -109,7 +106,7 @@
                     <p class="text-white/85 text-base md:text-lg max-w-lg mb-7 leading-relaxed">
                         Daftarkan putra-putri Anda sekarang. Kuota terbatas, segera bergabung bersama kami!
                     </p>
-                    <a href="#" class="inline-flex items-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-xl hover:bg-green-50 transition-colors shadow-lg text-sm">
+                    <a href="{{ route('ppdb.info') }}" class="inline-flex items-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-xl hover:bg-green-50 transition-colors shadow-lg text-sm">
                         <i class="fa fa-user-plus"></i>Info PPDB
                     </a>
                 </div>
@@ -212,7 +209,6 @@
         <div class="flex flex-col md:flex-row gap-12 items-center">
             <div class="flex-shrink-0 text-center">
                 <div class="w-48 h-56 rounded-2xl bg-gray-100 border-4 border-red-100 overflow-hidden mx-auto shadow-lg flex items-center justify-center">
-                    {{-- Ganti dengan: <img src="{{ asset('images/kepsek.jpg') }}" class="w-full h-full object-cover"> --}}
                     <i class="fa fa-user-tie text-gray-300 text-7xl"></i>
                 </div>
                 <div class="mt-3">
@@ -233,7 +229,7 @@
                     <a href="#kontak" class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-colors">
                         <i class="fa fa-envelope text-xs"></i>Hubungi Kami
                     </a>
-                    <a href="#" class="inline-flex items-center gap-2 border border-red-300 text-red-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-red-50 transition-colors">
+                    <a href="{{ route('profil.visi-misi') }}" class="inline-flex items-center gap-2 border border-red-300 text-red-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-red-50 transition-colors">
                         Profil Sekolah <i class="fa fa-arrow-right text-xs"></i>
                     </a>
                 </div>
@@ -243,7 +239,7 @@
 </section>
 
 {{-- ═══════════════════════════════════════════
-     INFORMASI SEKOLAH (dari tabel sekolah)
+     INFORMASI SEKOLAH
 ═══════════════════════════════════════════ --}}
 <section class="py-14 bg-red-700 text-white relative overflow-hidden">
     <div class="absolute inset-0 opacity-10">
@@ -291,13 +287,13 @@
                 <span class="badge-section">Informasi Terkini</span>
                 <h2 class="text-2xl md:text-3xl font-black text-gray-800">Berita &amp; Pengumuman</h2>
             </div>
-            {{-- <a href="#" class="text-red-700 font-semibold text-sm hover:underline">Lihat Semua →</a> --}}
+            <a href="{{ route('berita.index') }}" class="text-red-700 font-semibold text-sm hover:underline">Lihat Semua →</a>
         </div>
 
         @if ($pengumuman->count() > 0)
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach ($pengumuman as $idx => $p)
-            <div class="hover-lift bg-white rounded-2xl overflow-hidden border border-gray-100 {{ $idx === 0 ? 'md:row-span-1' : '' }}">
+            <div class="hover-lift bg-white rounded-2xl overflow-hidden border border-gray-100">
                 <div class="h-44 bg-gradient-to-br {{ $idx === 0 ? 'from-red-100 to-red-200' : ($idx === 1 ? 'from-blue-100 to-blue-200' : 'from-green-100 to-green-200') }} flex items-center justify-center">
                     <i class="fa fa-newspaper text-5xl {{ $idx === 0 ? 'text-red-300' : ($idx === 1 ? 'text-blue-300' : 'text-green-300') }}"></i>
                 </div>
@@ -314,7 +310,7 @@
                     <p class="text-xs text-gray-500 leading-relaxed line-clamp-3">
                         {{ \Illuminate\Support\Str::limit(strip_tags($p->isi ?? $p->konten ?? ''), 120) }}
                     </p>
-                    <a href="#" class="inline-flex items-center gap-1 text-red-700 text-xs font-semibold mt-3 hover:underline">
+                    <a href="{{ route('berita.pengumuman') }}" class="inline-flex items-center gap-1 text-red-700 text-xs font-semibold mt-3 hover:underline">
                         Selengkapnya <i class="fa fa-arrow-right text-xs"></i>
                     </a>
                 </div>
@@ -410,61 +406,16 @@
 </section>
 
 {{-- ═══════════════════════════════════════════
-     PROGRAM UNGGULAN
-═══════════════════════════════════════════ --}}
-<section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-10">
-            <span class="badge-section">Program Sekolah</span>
-            <h2 class="text-2xl md:text-3xl font-black text-gray-800">Program Unggulan</h2>
-            <p class="text-gray-500 text-sm mt-2 max-w-lg mx-auto">Berbagai program untuk mengembangkan potensi siswa secara holistik</p>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            @php
-                $progs = [
-                    ['icon'=>'fa-pray',         'title'=>'Tahfidz & Imtaq',     'desc'=>'Pembentukan karakter islami', 'color'=>'red'],
-                    ['icon'=>'fa-palette',       'title'=>'Seni & Budaya',       'desc'=>'Ekspresi kreativitas siswa',  'color'=>'pink'],
-                    ['icon'=>'fa-futbol',        'title'=>'Olahraga Prestasi',   'desc'=>'Kompetisi lokal & nasional',  'color'=>'green'],
-                    ['icon'=>'fa-laptop',        'title'=>'Literasi Digital',    'desc'=>'E-learning & teknologi',      'color'=>'blue'],
-                    ['icon'=>'fa-seedling',      'title'=>'Adiwiyata',           'desc'=>'Lingkungan hijau & bersih',   'color'=>'teal'],
-                    ['icon'=>'fa-language',      'title'=>'Bahasa Inggris',      'desc'=>'Percakapan & kompetensi',     'color'=>'indigo'],
-                    ['icon'=>'fa-flask',         'title'=>'Sains & Matematika',  'desc'=>'Olimpiade & riset dasar',     'color'=>'amber'],
-                    ['icon'=>'fa-hands-helping', 'title'=>'Kepramukaan',         'desc'=>'Jiwa kepemimpinan siswa',     'color'=>'orange'],
-                ];
-                $pc = ['red'=>['bg'=>'bg-red-50','ico'=>'text-red-600','bd'=>'border-red-100'],
-                       'pink'=>['bg'=>'bg-pink-50','ico'=>'text-pink-600','bd'=>'border-pink-100'],
-                       'green'=>['bg'=>'bg-green-50','ico'=>'text-green-600','bd'=>'border-green-100'],
-                       'blue'=>['bg'=>'bg-blue-50','ico'=>'text-blue-600','bd'=>'border-blue-100'],
-                       'teal'=>['bg'=>'bg-teal-50','ico'=>'text-teal-600','bd'=>'border-teal-100'],
-                       'indigo'=>['bg'=>'bg-indigo-50','ico'=>'text-indigo-600','bd'=>'border-indigo-100'],
-                       'amber'=>['bg'=>'bg-amber-50','ico'=>'text-amber-600','bd'=>'border-amber-100'],
-                       'orange'=>['bg'=>'bg-orange-50','ico'=>'text-orange-600','bd'=>'border-orange-100']];
-            @endphp
-            @foreach ($progs as $p)
-            @php $pcc = $pc[$p['color']]; @endphp
-            <div class="hover-lift bg-white rounded-2xl p-5 border {{ $pcc['bd'] }} text-center">
-                <div class="w-14 h-14 {{ $pcc['bg'] }} rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <i class="fa {{ $p['icon'] }} {{ $pcc['ico'] }} text-2xl"></i>
-                </div>
-                <p class="font-bold text-gray-800 text-sm mb-1">{{ $p['title'] }}</p>
-                <p class="text-gray-500 text-xs leading-snug">{{ $p['desc'] }}</p>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- ═══════════════════════════════════════════
      GALERI FOTO
 ═══════════════════════════════════════════ --}}
-<section class="py-16 bg-white">
+<section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-end justify-between mb-8">
             <div>
                 <span class="badge-section">Galeri</span>
                 <h2 class="text-2xl font-black text-gray-800">Galeri Sekolah</h2>
             </div>
-            <a href="#" class="text-red-700 font-semibold text-sm hover:underline">Lihat Semua →</a>
+            <a href="{{ route('galeri.foto') }}" class="text-red-700 font-semibold text-sm hover:underline">Lihat Semua →</a>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
             @php
@@ -490,16 +441,13 @@
             </div>
             @endforeach
         </div>
-        <p class="text-center text-xs text-gray-400 mt-4 italic">
-            * Ganti placeholder dengan foto asli menggunakan tag &lt;img&gt; dan storage Laravel.
-        </p>
     </div>
 </section>
 
 {{-- ═══════════════════════════════════════════
      LAYANAN SEKOLAH
 ═══════════════════════════════════════════ --}}
-<section class="py-16 bg-gray-50" id="layanan">
+<section class="py-16 bg-white" id="layanan">
     <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-10">
             <span class="badge-section">Layanan</span>
@@ -509,28 +457,108 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             @php
                 $layanan = [
-                    ['icon'=>'fa-exchange-alt','label'=>'Mutasi Siswa',        'color'=>'red'],
-                    ['icon'=>'fa-file-alt',    'label'=>'Surat Keterangan',    'color'=>'blue'],
-                    ['icon'=>'fa-id-card',     'label'=>'Cek / Cetak NISN',   'color'=>'green'],
-                    ['icon'=>'fa-graduation-cap','label'=>'Beasiswa PIP',      'color'=>'amber'],
-                    ['icon'=>'fa-download',    'label'=>'Unduhan Dokumen',     'color'=>'purple'],
-                    ['icon'=>'fa-users',       'label'=>'Penjaringan Alumni',  'color'=>'teal'],
+                    ['icon'=>'fa-exchange-alt','label'=>'Mutasi Siswa',        'color'=>'red',    'route'=>'layanan.mutasi'],
+                    ['icon'=>'fa-file-alt',    'label'=>'Surat Keterangan',    'color'=>'blue',   'route'=>'layanan.surat'],
+                    ['icon'=>'fa-id-card',     'label'=>'Cek / Cetak NISN',   'color'=>'green',  'route'=>'layanan.nisn'],
+                    ['icon'=>'fa-graduation-cap','label'=>'Beasiswa PIP',      'color'=>'amber',  'route'=>'layanan.pip'],
+                    ['icon'=>'fa-download',    'label'=>'Unduhan Dokumen',     'color'=>'purple', 'route'=>'layanan.unduhan'],
+                    ['icon'=>'fa-users',       'label'=>'Penjaringan Alumni',  'color'=>'teal',   'route'=>'layanan.alumni'],
                 ];
+                $lcc_map = ['red'=>['bg'=>'bg-red-50','ico'=>'text-red-600'],
+                            'blue'=>['bg'=>'bg-blue-50','ico'=>'text-blue-600'],
+                            'green'=>['bg'=>'bg-green-50','ico'=>'text-green-600'],
+                            'amber'=>['bg'=>'bg-amber-50','ico'=>'text-amber-600'],
+                            'purple'=>['bg'=>'bg-purple-50','ico'=>'text-purple-600'],
+                            'teal'=>['bg'=>'bg-teal-50','ico'=>'text-teal-600']];
             @endphp
             @foreach ($layanan as $l)
-            @php $lcc = ['red'=>['bg'=>'bg-red-50','ico'=>'text-red-600'],
-                         'blue'=>['bg'=>'bg-blue-50','ico'=>'text-blue-600'],
-                         'green'=>['bg'=>'bg-green-50','ico'=>'text-green-600'],
-                         'amber'=>['bg'=>'bg-amber-50','ico'=>'text-amber-600'],
-                         'purple'=>['bg'=>'bg-purple-50','ico'=>'text-purple-600'],
-                         'teal'=>['bg'=>'bg-teal-50','ico'=>'text-teal-600']][$l['color']]; @endphp
-            <a href="#" class="hover-lift bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-red-100 group">
+            @php $lcc = $lcc_map[$l['color']]; @endphp
+            <a href="{{ route($l['route']) }}" class="hover-lift bg-white rounded-2xl p-5 text-center border border-gray-100 hover:border-red-100 group">
                 <div class="w-12 h-12 {{ $lcc['bg'] }} rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <i class="fa {{ $l['icon'] }} {{ $lcc['ico'] }} text-xl"></i>
                 </div>
                 <p class="font-bold text-gray-800 text-xs leading-snug">{{ $l['label'] }}</p>
             </a>
             @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- ═══════════════════════════════════════════
+     LOKASI SEKOLAH (MAPS)
+═══════════════════════════════════════════ --}}
+<section class="py-16 bg-gray-50" id="lokasi">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-10">
+            <span class="badge-section">Lokasi</span>
+            <h2 class="text-2xl md:text-3xl font-black text-gray-800">Temukan Kami</h2>
+            <p class="text-gray-500 text-sm mt-2">SD Negeri Sukorame 1 Kota Kediri</p>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+            {{-- Info kontak --}}
+            <div class="w-full lg:w-80 flex-shrink-0 space-y-4">
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <h3 class="font-black text-gray-800 text-base mb-4 flex items-center gap-2">
+                        <i class="fa fa-map-marker-alt text-red-600"></i> Info Lokasi
+                    </h3>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex gap-3">
+                            <div class="w-9 h-9 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa fa-location-dot text-red-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700 text-xs mb-0.5">Alamat</p>
+                                <p class="text-gray-500 leading-snug">Jl. Sukorame No. 1, Sukorame, Kec. Mojoroto, Kota Kediri, Jawa Timur 64161</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa fa-phone text-blue-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700 text-xs mb-0.5">Telepon</p>
+                                <p class="text-gray-500">(0354) 123456</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa fa-clock text-green-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700 text-xs mb-0.5">Jam Operasional</p>
+                                <p class="text-gray-500">Senin – Sabtu: 07.00 – 13.00 WIB</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-9 h-9 bg-amber-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa fa-envelope text-amber-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700 text-xs mb-0.5">Email</p>
+                                <p class="text-gray-500">sdn.sukorame1@kediri.go.id</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/SD+Negeri+Sukorame+1+Kediri/@-7.8152,112.0095,17z" target="_blank"
+                       class="mt-5 flex items-center justify-center gap-2 bg-red-700 hover:bg-red-800 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-colors w-full">
+                        <i class="fa fa-directions"></i> Petunjuk Arah
+                    </a>
+                </div>
+            </div>
+
+            {{-- Google Maps Embed --}}
+            <div class="flex-1 w-full maps-container shadow-lg" style="height: 420px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5!2d112.0095!3d-7.8152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e785a5c3b3b3b3b%3A0x3b3b3b3b3b3b3b3b!2sSD%20Negeri%20Sukorame%201%20Kediri!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                    width="100%"
+                    height="420"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Lokasi SD Negeri Sukorame 1 Kediri">
+                </iframe>
+            </div>
         </div>
     </div>
 </section>

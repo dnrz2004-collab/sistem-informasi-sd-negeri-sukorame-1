@@ -23,7 +23,7 @@
         .nav-item:focus-within > .dropdown { display: block; }
         .dropdown {
             display: none; position: absolute; top: 100%; left: 0;
-            background: #fff; min-width: 210px;
+            background: #fff; min-width: 220px;
             border-top: 3px solid var(--red);
             border-radius: 0 0 12px 12px;
             box-shadow: 0 12px 32px rgba(0,0,0,.13); z-index: 999;
@@ -49,6 +49,8 @@
             padding: 3px 12px; border-radius: 999px;
             text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px;
         }
+        /* Active nav link */
+        .nav-active { color: var(--red) !important; background: var(--red-light) !important; border-radius: 8px; }
     </style>
     @stack('head')
 </head>
@@ -88,87 +90,95 @@
             {{-- Desktop --}}
             <div class="hidden lg:flex items-center gap-0.5 text-sm font-semibold text-gray-700">
 
-                <a href="{{ route('home') }}" class="px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors">Beranda</a>
+                <a href="{{ route('home') }}"
+                   class="px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('home') ? 'nav-active' : '' }}">
+                    Beranda
+                </a>
 
+                {{-- Profil --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('profil.*') ? 'nav-active' : '' }}">
                         Profil <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
-                        <a href="#">Visi &amp; Misi</a>
-                        <a href="#">Sejarah Sekolah</a>
-                        <a href="#">Struktur Organisasi</a>
-                        <a href="#">Komite Sekolah</a>
-                        <a href="#">Profil Guru &amp; Karyawan</a>
-                        <a href="#">Sarana &amp; Prasarana</a>
-                        <a href="#">Akreditasi Sekolah</a>
-                        <a href="#">Prestasi Sekolah</a>
+                        <a href="{{ route('profil.visi-misi') }}">Visi &amp; Misi</a>
+                        <a href="{{ route('profil.sejarah') }}">Sejarah Sekolah</a>
+                        <a href="{{ route('profil.struktur') }}">Struktur Organisasi</a>
+                        <a href="{{ route('profil.komite') }}">Komite Sekolah</a>
+                        <a href="{{ route('profil.guru') }}">Profil Guru &amp; Karyawan</a>
+                        <a href="{{ route('profil.sarana') }}">Sarana &amp; Prasarana</a>
+                        <a href="{{ route('profil.akreditasi') }}">Akreditasi Sekolah</a>
+                        <a href="{{ route('profil.prestasi') }}">Prestasi Sekolah</a>
                     </div>
                 </div>
 
+                {{-- Akademik --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('akademik.*') ? 'nav-active' : '' }}">
                         Akademik <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
-                        <a href="#">Kurikulum</a>
-                        <a href="#">Kalender Pendidikan</a>
-                        <a href="#">Pendidikan Karakter</a>
-                        <a href="#">Ekstrakulikuler</a>
-                        <a href="#">Program Unggulan</a>
-                        <a href="#">Gerakan Literasi</a>
+                        <a href="{{ route('akademik.kurikulum') }}">Kurikulum</a>
+                        <a href="{{ route('akademik.kalender') }}">Kalender Pendidikan</a>
+                        <a href="{{ route('akademik.karakter') }}">Pendidikan Karakter</a>
+                        <a href="{{ route('akademik.ekstrakurikuler') }}">Ekstrakulikuler</a>
+                        <a href="{{ route('akademik.literasi') }}">Gerakan Literasi</a>
                         <a href="{{ route('login') }}" style="color:var(--red);font-weight:700;">
                             <i class="fa fa-graduation-cap mr-1"></i>E-Learning SIMAS
                         </a>
                     </div>
                 </div>
 
+                {{-- Berita --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('berita.*') ? 'nav-active' : '' }}">
                         Berita <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
-                        <a href="#">Berita Sekolah</a>
-                        <a href="#">Pengumuman</a>
-                        <a href="#">Agenda Kegiatan</a>
-                        <a href="#">Info Dinas Pendidikan</a>
+                        <a href="{{ route('berita.index') }}">Berita Sekolah</a>
+                        <a href="{{ route('berita.pengumuman') }}">Pengumuman</a>
+                        <a href="{{ route('berita.agenda') }}">Agenda Kegiatan</a>
+                        <a href="{{ route('berita.info-dinas') }}">Info Dinas Pendidikan</a>
                     </div>
                 </div>
 
+                {{-- Galeri --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('galeri.*') ? 'nav-active' : '' }}">
                         Galeri <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
-                        <a href="#">Foto Kegiatan</a>
-                        <a href="#">Video</a>
+                        <a href="{{ route('galeri.foto') }}">Foto Kegiatan</a>
+                        <a href="{{ route('galeri.video') }}">Video</a>
                     </div>
                 </div>
 
+                {{-- PPDB --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('ppdb.*') ? 'nav-active' : '' }}">
                         PPDB <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
-                        <a href="#">Informasi PPDB</a>
-                        <a href="#">Syarat Pendaftaran</a>
-                        <a href="#">Jadwal PPDB</a>
-                        <a href="#">Alur Pendaftaran</a>
+                        <a href="{{ route('ppdb.info') }}">Informasi PPDB</a>
+                        <a href="{{ route('ppdb.syarat') }}">Syarat Pendaftaran</a>
+                        <a href="{{ route('ppdb.jadwal') }}">Jadwal PPDB</a>
+                        <a href="{{ route('ppdb.alur') }}">Alur Pendaftaran</a>
                     </div>
                 </div>
 
+                {{-- Layanan --}}
                 <div class="nav-item">
-                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors">
+                    <button class="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-700 transition-colors {{ request()->routeIs('layanan.*') ? 'nav-active' : '' }}">
                         Layanan <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
-                        <a href="#">Mutasi Siswa</a>
-                        <a href="#">Surat Keterangan Siswa</a>
-                        <a href="#">Izin Penelitian / PKL</a>
-                        <a href="#">Cek / Cetak NISN</a>
-                        <a href="#">Cek Beasiswa PIP</a>
-                        <a href="#">Unduhan Dokumen</a>
-                        <a href="#">Penjaringan Alumni</a>
+                        <a href="{{ route('layanan.mutasi') }}">Mutasi Siswa</a>
+                        <a href="{{ route('layanan.surat') }}">Surat Keterangan Siswa</a>
+                        <a href="{{ route('layanan.izin') }}">Izin Penelitian / PKL</a>
+                        <a href="{{ route('layanan.nisn') }}">Cek / Cetak NISN</a>
+                        <a href="{{ route('layanan.pip') }}">Cek Beasiswa PIP</a>
+                        <a href="{{ route('layanan.unduhan') }}">Unduhan Dokumen</a>
+                        <a href="{{ route('layanan.alumni') }}">Penjaringan Alumni</a>
                     </div>
                 </div>
 
@@ -190,12 +200,49 @@
             <a href="{{ route('home') }}" class="block py-2.5 text-gray-700 border-b border-gray-100">Beranda</a>
             @php
                 $mobs = [
-                    'Profil' => ['Visi & Misi','Sejarah Sekolah','Struktur Organisasi','Profil Guru','Sarana & Prasarana','Akreditasi','Prestasi'],
-                    'Akademik' => ['Kurikulum','Kalender Pendidikan','Ekstrakulikuler','Program Unggulan','E-Learning SIMAS'],
-                    'Berita' => ['Berita Sekolah','Pengumuman','Agenda Kegiatan'],
-                    'Galeri' => ['Foto Kegiatan','Video'],
-                    'PPDB' => ['Informasi PPDB','Syarat Pendaftaran','Jadwal PPDB'],
-                    'Layanan' => ['Mutasi Siswa','Surat Keterangan','Izin PKL','Cek NISN','Unduhan'],
+                    'Profil' => [
+                        ['label'=>'Visi & Misi','route'=>'profil.visi-misi'],
+                        ['label'=>'Sejarah Sekolah','route'=>'profil.sejarah'],
+                        ['label'=>'Struktur Organisasi','route'=>'profil.struktur'],
+                        ['label'=>'Komite Sekolah','route'=>'profil.komite'],
+                        ['label'=>'Profil Guru','route'=>'profil.guru'],
+                        ['label'=>'Sarana & Prasarana','route'=>'profil.sarana'],
+                        ['label'=>'Akreditasi','route'=>'profil.akreditasi'],
+                        ['label'=>'Prestasi','route'=>'profil.prestasi'],
+                    ],
+                    'Akademik' => [
+                        ['label'=>'Kurikulum','route'=>'akademik.kurikulum'],
+                        ['label'=>'Kalender Pendidikan','route'=>'akademik.kalender'],
+                        ['label'=>'Pendidikan Karakter','route'=>'akademik.karakter'],
+                        ['label'=>'Ekstrakulikuler','route'=>'akademik.ekstrakurikuler'],
+                        ['label'=>'Gerakan Literasi','route'=>'akademik.literasi'],
+                        ['label'=>'E-Learning SIMAS','route'=>'login'],
+                    ],
+                    'Berita' => [
+                        ['label'=>'Berita Sekolah','route'=>'berita.index'],
+                        ['label'=>'Pengumuman','route'=>'berita.pengumuman'],
+                        ['label'=>'Agenda Kegiatan','route'=>'berita.agenda'],
+                        ['label'=>'Info Dinas Pendidikan','route'=>'berita.info-dinas'],
+                    ],
+                    'Galeri' => [
+                        ['label'=>'Foto Kegiatan','route'=>'galeri.foto'],
+                        ['label'=>'Video','route'=>'galeri.video'],
+                    ],
+                    'PPDB' => [
+                        ['label'=>'Informasi PPDB','route'=>'ppdb.info'],
+                        ['label'=>'Syarat Pendaftaran','route'=>'ppdb.syarat'],
+                        ['label'=>'Jadwal PPDB','route'=>'ppdb.jadwal'],
+                        ['label'=>'Alur Pendaftaran','route'=>'ppdb.alur'],
+                    ],
+                    'Layanan' => [
+                        ['label'=>'Mutasi Siswa','route'=>'layanan.mutasi'],
+                        ['label'=>'Surat Keterangan','route'=>'layanan.surat'],
+                        ['label'=>'Izin PKL','route'=>'layanan.izin'],
+                        ['label'=>'Cek NISN','route'=>'layanan.nisn'],
+                        ['label'=>'Cek Beasiswa PIP','route'=>'layanan.pip'],
+                        ['label'=>'Unduhan','route'=>'layanan.unduhan'],
+                        ['label'=>'Penjaringan Alumni','route'=>'layanan.alumni'],
+                    ],
                 ];
             @endphp
             @foreach ($mobs as $label => $subs)
@@ -206,7 +253,7 @@
                 </button>
                 <div class="mob-sub bg-gray-50 rounded-b-lg">
                     @foreach ($subs as $s)
-                    <a href="#" class="block px-5 py-2 text-xs text-gray-600 border-b border-gray-100 last:border-0 hover:text-red-700">{{ $s }}</a>
+                    <a href="{{ route($s['route']) }}" class="block px-5 py-2 text-xs text-gray-600 border-b border-gray-100 last:border-0 hover:text-red-700">{{ $s['label'] }}</a>
                     @endforeach
                 </div>
             </div>
@@ -247,17 +294,26 @@
             <div>
                 <h4 class="text-white font-semibold text-sm mb-4 pb-2 border-b border-gray-800">Profil Sekolah</h4>
                 <div class="space-y-2 text-sm">
-                    @foreach (['Visi & Misi','Sejarah Sekolah','Struktur Organisasi','Profil Guru','Sarana & Prasarana','Akreditasi','Prestasi Sekolah'] as $l)
-                    <a href="#" class="block hover:text-red-400 transition-colors">{{ $l }}</a>
-                    @endforeach
+                    <a href="{{ route('profil.visi-misi') }}" class="block hover:text-red-400 transition-colors">Visi &amp; Misi</a>
+                    <a href="{{ route('profil.sejarah') }}" class="block hover:text-red-400 transition-colors">Sejarah Sekolah</a>
+                    <a href="{{ route('profil.struktur') }}" class="block hover:text-red-400 transition-colors">Struktur Organisasi</a>
+                    <a href="{{ route('profil.guru') }}" class="block hover:text-red-400 transition-colors">Profil Guru</a>
+                    <a href="{{ route('profil.sarana') }}" class="block hover:text-red-400 transition-colors">Sarana &amp; Prasarana</a>
+                    <a href="{{ route('profil.akreditasi') }}" class="block hover:text-red-400 transition-colors">Akreditasi</a>
+                    <a href="{{ route('profil.prestasi') }}" class="block hover:text-red-400 transition-colors">Prestasi Sekolah</a>
                 </div>
             </div>
             <div>
                 <h4 class="text-white font-semibold text-sm mb-4 pb-2 border-b border-gray-800">Layanan &amp; SIMAS</h4>
                 <div class="space-y-2 text-sm">
-                    @foreach (['Berita Sekolah','Pengumuman','Galeri Foto','Kalender Pendidikan','PPDB Online','Mutasi Siswa','Cek NISN','Unduhan Dokumen'] as $l)
-                    <a href="#" class="block hover:text-red-400 transition-colors">{{ $l }}</a>
-                    @endforeach
+                    <a href="{{ route('berita.index') }}" class="block hover:text-red-400 transition-colors">Berita Sekolah</a>
+                    <a href="{{ route('berita.pengumuman') }}" class="block hover:text-red-400 transition-colors">Pengumuman</a>
+                    <a href="{{ route('galeri.foto') }}" class="block hover:text-red-400 transition-colors">Galeri Foto</a>
+                    <a href="{{ route('akademik.kalender') }}" class="block hover:text-red-400 transition-colors">Kalender Pendidikan</a>
+                    <a href="{{ route('ppdb.info') }}" class="block hover:text-red-400 transition-colors">PPDB Online</a>
+                    <a href="{{ route('layanan.mutasi') }}" class="block hover:text-red-400 transition-colors">Mutasi Siswa</a>
+                    <a href="{{ route('layanan.nisn') }}" class="block hover:text-red-400 transition-colors">Cek NISN</a>
+                    <a href="{{ route('layanan.unduhan') }}" class="block hover:text-red-400 transition-colors">Unduhan Dokumen</a>
                 </div>
                 <a href="{{ route('login') }}" class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-colors mt-5">
                     <i class="fa fa-graduation-cap"></i> Login SIMAS
