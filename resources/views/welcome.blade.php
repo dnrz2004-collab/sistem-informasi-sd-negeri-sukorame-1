@@ -759,7 +759,6 @@
             </div>
             @endforeach
         </div>
-        <p class="text-center text-xs text-gray-300 mt-5 italic">* Ganti placeholder dengan foto asli via storage Laravel</p>
     </div>
 </section>
 
@@ -856,7 +855,7 @@
                 </div>
 
                 {{-- Tombol --}}
-                <a href="https://www.google.com/maps/search/SD+Negeri+Sukorame+1+Kediri/@-7.8152,112.0095,17z"
+                <a href="https://maps.app.goo.gl/P5GbK9JDJcaWFkZq6"
                    target="_blank"
                    class="flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm py-3.5 rounded-2xl transition-colors shadow-lg">
                     <i class="fa fa-directions"></i> Buka di Google Maps

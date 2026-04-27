@@ -63,16 +63,16 @@ class ProfilController extends Controller
 
     public function sarana()
     {
-        return view('public.profil.sarana', array_merge($this->baseData(), [
-            'pageTitle' => 'Sarana & Prasarana — SDN Sukorame 1',
-        ]));
+        $pageTitle = 'Sarana & Prasarana — SDN Sukorame 1';
+        // $sarana = \App\Models\Sarana::orderBy('urutan')->get(); // kalau sudah ada model
+        return view('public.profil.sarana', compact('pageTitle'));
     }
 
     public function akreditasi()
     {
-        return view('public.profil.akreditasi', array_merge($this->baseData(), [
-            'pageTitle' => 'Akreditasi Sekolah — SDN Sukorame 1',
-        ]));
+        $sekolah   = \App\Models\Sekolah::first();
+        $pageTitle = 'Akreditasi — SDN Sukorame 1';
+        return view('public.profil.akreditasi', compact('sekolah', 'pageTitle'));
     }
 
     public function prestasi()
