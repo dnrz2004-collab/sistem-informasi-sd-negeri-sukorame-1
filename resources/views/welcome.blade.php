@@ -524,11 +524,11 @@
             @php
                 $infoItems = [
                     ['icon'=>'fa-school',        'label'=>'Nama Sekolah',  'value'=> $sekolah?->nama ?? 'SD Negeri Sukorame 1'],
-                    ['icon'=>'fa-barcode',        'label'=>'NPSN',          'value'=> $sekolah?->npsn ?? '20533972'],
-                    ['icon'=>'fa-map-marker-alt', 'label'=>'Alamat',        'value'=> $sekolah?->alamat ?? 'Jl. Sukorame No. 1, Mojoroto, Kediri'],
-                    ['icon'=>'fa-star',           'label'=>'Akreditasi',    'value'=> $sekolah?->akreditasi ?? 'A — Sangat Baik'],
+                    ['icon'=>'fa-barcode',        'label'=>'NPSN',          'value'=> $sekolah?->npsn ?? '20534318'],
+                    ['icon'=>'fa-map-marker-alt', 'label'=>'Alamat',        'value'=> $sekolah?->alamat ?? 'Jl. Dr. Saharjo No. 1, Kediri'],
+                    ['icon'=>'fa-star',           'label'=>'Akreditasi',    'value'=> $sekolah?->akreditasi ?? 'B'],
                     ['icon'=>'fa-book',           'label'=>'Kurikulum',     'value'=> $sekolah?->kurikulum ?? 'Kurikulum Merdeka'],
-                    ['icon'=>'fa-flag',           'label'=>'Status',        'value'=> $sekolah?->status ?? 'Negeri (Pemerintah)'],
+                    ['icon'=>'fa-flag',           'label'=>'Status',        'value'=> $sekolah?->status ?? 'Negeri'],
                     ['icon'=>'fa-phone',          'label'=>'Telepon',       'value'=> $sekolah?->telepon ?? '(0354) 123456'],
                     ['icon'=>'fa-envelope',       'label'=>'Email',         'value'=> $sekolah?->email ?? 'sdn.sukorame1@kediri.go.id'],
                 ];

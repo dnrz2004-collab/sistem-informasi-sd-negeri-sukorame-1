@@ -65,9 +65,9 @@
             <span><i class="fa fa-map-marker-alt mr-1"></i>Jl. Sukorame No.1, Kota Kediri</span>
         </div>
         <div class="flex items-center gap-3 opacity-90">
-            <a href="#" class="hover:opacity-100"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="hover:opacity-100"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:opacity-100"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/sdnsatusukorame/" class="hover:opacity-100"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/sukoramekediri/" class="hover:opacity-100"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@sdnsukorame1kediri865" class="hover:opacity-100"><i class="fab fa-youtube"></i></a>
             <a href="{{ route('login') }}" class="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded font-semibold transition-colors">
                 <i class="fa fa-graduation-cap mr-1"></i>Login SIMAS
             </a>
@@ -276,18 +276,30 @@
                     <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-white font-black">SD</div>
                     <div>
                         <p class="font-bold text-white">SD Negeri Sukorame 1</p>
-                        <p class="text-xs">Kota Kediri · NPSN: {{ $sekolah?->npsn ?? '20533972' }}</p>
+                        <p class="text-xs">Kota Kediri · NPSN: {{ $sekolah?->npsn ?? '20534318' }}</p>
                     </div>
                 </div>
                 <p class="text-sm leading-relaxed mb-4 max-w-sm">Membentuk generasi cerdas, berkarakter, dan berprestasi berlandaskan iman dan teknologi melalui platform SIMAS.</p>
                 <div class="space-y-2 text-sm">
-                    <div class="flex gap-2"><i class="fa fa-map-marker-alt text-blue-400 mt-0.5 w-4"></i><span>Jl. Sukorame No. 1, Kota Kediri, Jawa Timur</span></div>
+                    <div class="flex gap-2"><i class="fa fa-map-marker-alt text-blue-400 mt-0.5 w-4"></i><span>Jl. Dr. Saharjo No. 1, Kediri</span></div>
                     <div class="flex gap-2"><i class="fa fa-phone text-blue-400 w-4"></i><span>(0354) 123456</span></div>
                     <div class="flex gap-2"><i class="fa fa-envelope text-blue-400 w-4"></i><span>sdn.sukorame1@kediri.go.id</span></div>
                 </div>
                 <div class="flex gap-3 mt-5">
-                    @foreach (['facebook-f','instagram','youtube'] as $s)
-                    <a href="#" class="w-9 h-9 bg-gray-800 hover:bg-blue-700 rounded-full flex items-center justify-center text-sm transition-colors"><i class="fab fa-{{ $s }}"></i></a>
+                    @php
+                        $socials = [
+                            'facebook-f' => 'https://www.facebook.com/sdnsatusukorame/',
+                            'instagram'  => 'https://www.instagram.com/sukoramekediri/',
+                            'youtube'    => 'https://www.youtube.com/@sdnsukorame1kediri865'
+                        ];
+                    @endphp
+
+                    @foreach ($socials as $icon => $url)
+                        <a href="{{ $url }}" 
+                        target="_blank" 
+                        class="w-9 h-9 bg-gray-800 hover:bg-blue-700 rounded-full flex items-center justify-center text-sm transition-colors">
+                            <i class="fab fa-{{ $icon }}"></i>
+                        </a>
                     @endforeach
                 </div>
             </div>

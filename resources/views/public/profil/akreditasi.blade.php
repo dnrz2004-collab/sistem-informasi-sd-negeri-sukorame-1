@@ -170,8 +170,8 @@
 
             {{-- Akreditasi Badge --}}
             @php
-                $grade      = isset($sekolah->akreditasi)         ? $sekolah->akreditasi         : 'A';
-                $nilaiAkr   = isset($sekolah->nilai_akreditasi)   ? $sekolah->nilai_akreditasi   : '92.40';
+                $grade      = isset($sekolah->akreditasi)         ? $sekolah->akreditasi         : 'B';
+                $nilaiAkr   = isset($sekolah->nilai_akreditasi)   ? $sekolah->nilai_akreditasi   : '80,22';
                 $tahunAkr   = isset($sekolah->tahun_akreditasi)   ? $sekolah->tahun_akreditasi   : '2022';
                 $noSk       = isset($sekolah->nomor_sk_akreditasi)? $sekolah->nomor_sk_akreditasi: '—';
             @endphp
