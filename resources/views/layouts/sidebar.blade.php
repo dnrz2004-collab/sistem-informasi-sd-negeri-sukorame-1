@@ -12,6 +12,7 @@
     <nav class="sidebar-nav">
         @php $role = auth()->user()->role; @endphp
 
+        {{-- ══════════════════ ADMIN ══════════════════ --}}
         @if($role === 'admin')
             <div class="nav-section-title">Menu Admin</div>
             <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -36,45 +37,66 @@
                 <i class="fas fa-bullhorn"></i> <span>Pengumuman</span>
             </a>
 
+        {{-- ══════════════════ GURU ══════════════════ --}}
         @elseif($role === 'guru')
             <div class="nav-section-title">Menu Guru</div>
             <a href="{{ route('guru.dashboard') }}" class="nav-item {{ request()->routeIs('guru.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
             </a>
-            <a href="{{ route('guru.absensi.index') }}" class="nav-item">
+            <a href="{{ route('guru.materi.index') }}" class="nav-item {{ request()->routeIs('guru.materi*') ? 'active' : '' }}">
+                <i class="fas fa-laptop-code"></i> <span>Materi Pelajaran</span>
+            </a>
+            <a href="{{ route('guru.tugas.index') }}" class="nav-item {{ request()->routeIs('guru.tugas*') ? 'active' : '' }}">
+                <i class="fas fa-file-pen"></i> <span>Buat Tugas</span>
+            </a>
+            <a href="{{ route('guru.nilai.index') }}" class="nav-item {{ request()->routeIs('guru.nilai*') ? 'active' : '' }}">
+                <i class="fas fa-star"></i> <span>Penilaian Tugas</span>
+            </a>
+            <a href="{{ route('guru.absensi.index') }}" class="nav-item {{ request()->routeIs('guru.absensi*') ? 'active' : '' }}">
                 <i class="fas fa-clipboard-check"></i> <span>Absensi Siswa</span>
             </a>
-            <a href="{{ route('guru.nilai.index') }}" class="nav-item">
-                <i class="fas fa-star"></i> <span>Data Nilai</span>
+            <a href="{{ route('guru.forum.index') }}" class="nav-item {{ request()->routeIs('guru.forum*') ? 'active' : '' }}">
+                <i class="fas fa-comments"></i> <span>Forum Diskusi</span>
             </a>
-            <a href="{{ route('guru.materi.index') }}" class="nav-item">
-                <i class="fas fa-laptop-code"></i> <span>E-Learning</span>
-            </a>
-            <a href="{{ route('guru.mbg') }}" class="nav-item">
+            <a href="{{ route('guru.mbg') }}" class="nav-item {{ request()->routeIs('guru.mbg') ? 'active' : '' }}">
                 <i class="fas fa-utensils"></i> <span>Program MBG</span>
             </a>
 
+        {{-- ══════════════════ WALI MURID ══════════════════ --}}
         @elseif($role === 'wali_murid')
-            <div class="nav-section-title">Menu Wali Murid</div>
-            <a href="{{ route('wali.dashboard') }}" class="nav-item">
+            <div class="nav-section-title">Menu Orang Tua</div>
+            <a href="{{ route('wali.dashboard') }}" class="nav-item {{ request()->routeIs('wali.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-home"></i> <span>Dashboard</span>
             </a>
-            <a href="{{ route('wali.raport') }}" class="nav-item">
+            <a href="{{ route('wali.kehadiran') }}" class="nav-item {{ request()->routeIs('wali.kehadiran') ? 'active' : '' }}">
+                <i class="fas fa-calendar-check"></i> <span>Absensi Anak</span>
+            </a>
+            <a href="{{ route('wali.tugas') }}" class="nav-item {{ request()->routeIs('wali.tugas') ? 'active' : '' }}">
+                <i class="fas fa-tasks"></i> <span>Tugas Anak</span>
+            </a>
+            <a href="{{ route('wali.pengumuman.index') }}" class="nav-item {{ request()->routeIs('wali.pengumuman*') ? 'active' : '' }}">
+                <i class="fas fa-bullhorn"></i> <span>Pengumuman</span>
+            </a>
+            <a href="{{ route('wali.raport') }}" class="nav-item {{ request()->routeIs('wali.raport') ? 'active' : '' }}">
                 <i class="fas fa-file-alt"></i> <span>E-Raport</span>
             </a>
-            <a href="{{ route('wali.kehadiran') }}" class="nav-item">
-                <i class="fas fa-calendar-check"></i> <span>Kehadiran</span>
-            </a>
 
+        {{-- ══════════════════ SISWA ══════════════════ --}}
         @elseif($role === 'siswa')
             <div class="nav-section-title">Menu Siswa</div>
-            <a href="{{ route('siswa.dashboard') }}" class="nav-item">
+            <a href="{{ route('siswa.dashboard') }}" class="nav-item {{ request()->routeIs('siswa.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-home"></i> <span>Dashboard</span>
             </a>
-            <a href="{{ route('siswa.elearning') }}" class="nav-item">
-                <i class="fas fa-book"></i> <span>E-Learning</span>
+            <a href="{{ route('siswa.materi.index') }}" class="nav-item {{ request()->routeIs('siswa.materi*') ? 'active' : '' }}">
+                <i class="fas fa-book-open"></i> <span>Materi</span>
             </a>
-            <a href="{{ route('siswa.raport') }}" class="nav-item">
+            <a href="{{ route('siswa.tugas.index') }}" class="nav-item {{ request()->routeIs('siswa.tugas*') ? 'active' : '' }}">
+                <i class="fas fa-file-pen"></i> <span>Tugas</span>
+            </a>
+            <a href="{{ route('siswa.absensi.index') }}" class="nav-item {{ request()->routeIs('siswa.absensi*') ? 'active' : '' }}">
+                <i class="fas fa-calendar-check"></i> <span>Absensi</span>
+            </a>
+            <a href="{{ route('siswa.raport') }}" class="nav-item {{ request()->routeIs('siswa.raport') ? 'active' : '' }}">
                 <i class="fas fa-scroll"></i> <span>Raport</span>
             </a>
         @endif

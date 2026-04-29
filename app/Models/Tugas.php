@@ -6,5 +6,50 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tugas extends Model
 {
-    //
+    protected $table = 'tugas';
+
+    protected $fillable = [
+        'judul',
+        'deskripsi',
+        'file',
+        'mata_pelajaran_id',
+        'kelas_id',
+        'guru_id',
+        'deadline',
+        'status',
+    ];
+
+    protected $casts = [
+        'deadline' => 'datetime',
+    ];
+
+    public function mataPelajaran()
+    {
+        return $this->belongsTo(MataPelajaran::class, 'mata_pelajaran_id');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id');
+    }
+
+    public function pengumpulan()
+    {
+        return $this->hasMany(PengumpulanTugas::class, 'tugas_id');
+    }
+
+    public function pengumpulanSiswa($siswaId)
+    {
+        return $this->pengumpulan()->where('siswa_id', $siswaId)->first();
+    }
+
+    public function isTerlambat(): bool
+    {
+        return $this->deadline && now()->gt($this->deadline);
+    }
 }
