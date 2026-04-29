@@ -173,7 +173,7 @@
                     <div class="dropdown">
                         <a href="{{ route('layanan.mutasi') }}">Mutasi Siswa</a>
                         <a href="{{ route('layanan.surat') }}">Surat Keterangan Siswa</a>
-                        <a href="{{ route('layanan.izin') }}">Izin Penelitian / PKL</a>
+                        <a href="{{ route('layanan.izin') }}">Izin</a>
                         <a href="{{ route('layanan.nisn') }}">Cek / Cetak NISN</a>
                         <a href="{{ route('layanan.pip') }}">Cek Beasiswa PIP</a>
                         <a href="{{ route('layanan.unduhan') }}">Unduhan Dokumen</a>
