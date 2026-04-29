@@ -354,18 +354,12 @@
                      * $waliKelas = \App\Models\Guru::whereNotNull('kelas_id')->with('kelas')->get();
                      */
                     $wali_kelas_default = [
-                        ['kelas'=>'I A',   'nama'=> $waliKelas[0]->nama  ?? 'Wali Kelas I A',   'nip'=> $waliKelas[0]->nip  ?? '—'],
-                        ['kelas'=>'I B',   'nama'=> $waliKelas[1]->nama  ?? 'Wali Kelas I B',   'nip'=> $waliKelas[1]->nip  ?? '—'],
-                        ['kelas'=>'II A',  'nama'=> $waliKelas[2]->nama  ?? 'Wali Kelas II A',  'nip'=> $waliKelas[2]->nip  ?? '—'],
-                        ['kelas'=>'II B',  'nama'=> $waliKelas[3]->nama  ?? 'Wali Kelas II B',  'nip'=> $waliKelas[3]->nip  ?? '—'],
-                        ['kelas'=>'III A', 'nama'=> $waliKelas[4]->nama  ?? 'Wali Kelas III A', 'nip'=> $waliKelas[4]->nip  ?? '—'],
-                        ['kelas'=>'III B', 'nama'=> $waliKelas[5]->nama  ?? 'Wali Kelas III B', 'nip'=> $waliKelas[5]->nip  ?? '—'],
-                        ['kelas'=>'IV A',  'nama'=> $waliKelas[6]->nama  ?? 'Wali Kelas IV A',  'nip'=> $waliKelas[6]->nip  ?? '—'],
-                        ['kelas'=>'IV B',  'nama'=> $waliKelas[7]->nama  ?? 'Wali Kelas IV B',  'nip'=> $waliKelas[7]->nip  ?? '—'],
-                        ['kelas'=>'V A',   'nama'=> $waliKelas[8]->nama  ?? 'Wali Kelas V A',   'nip'=> $waliKelas[8]->nip  ?? '—'],
-                        ['kelas'=>'V B',   'nama'=> $waliKelas[9]->nama  ?? 'Wali Kelas V B',   'nip'=> $waliKelas[9]->nip  ?? '—'],
-                        ['kelas'=>'VI A',  'nama'=> $waliKelas[10]->nama ?? 'Wali Kelas VI A',  'nip'=> $waliKelas[10]->nip ?? '—'],
-                        ['kelas'=>'VI B',  'nama'=> $waliKelas[11]->nama ?? 'Wali Kelas VI B',  'nip'=> $waliKelas[11]->nip ?? '—'],
+                        ['kelas'=>'I',   'nama'=> $waliKelas[0]->nama  ?? 'Wali Kelas I',   'nip'=> $waliKelas[0]->nip  ?? '—'],
+                        ['kelas'=>'II',  'nama'=> $waliKelas[2]->nama  ?? 'Wali Kelas II',  'nip'=> $waliKelas[2]->nip  ?? '—'],
+                        ['kelas'=>'III', 'nama'=> $waliKelas[4]->nama  ?? 'Wali Kelas III', 'nip'=> $waliKelas[4]->nip  ?? '—'],
+                        ['kelas'=>'IV',  'nama'=> $waliKelas[6]->nama  ?? 'Wali Kelas IV',  'nip'=> $waliKelas[6]->nip  ?? '—'],
+                        ['kelas'=>'V',   'nama'=> $waliKelas[8]->nama  ?? 'Wali Kelas V',   'nip'=> $waliKelas[8]->nip  ?? '—'],
+                        ['kelas'=>'VI',  'nama'=> $waliKelas[10]->nama ?? 'Wali Kelas VI',  'nip'=> $waliKelas[10]->nip ?? '—'],
                     ];
                     $wali_colors = ['bg-blue-50 text-blue-700','bg-indigo-50 text-indigo-700','bg-violet-50 text-violet-700','bg-purple-50 text-purple-700'];
                 @endphp

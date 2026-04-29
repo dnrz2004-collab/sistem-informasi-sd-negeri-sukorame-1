@@ -103,15 +103,16 @@
     /* ── SAMBUTAN ── */
     .kepsek-photo {
         width: 200px; height: 240px; border-radius: 24px;
-        background: linear-gradient(145deg, #f8fafc, #f1f5f9);
         border: 4px solid #bfdbfe;
         overflow: hidden; display: flex; align-items: center; justify-content: center;
         position: relative; box-shadow: 0 20px 48px rgba(29,78,216,.12);
     }
+    .kepsek-photo img { width: 100%; height: 100%; object-fit: cover; }
     .kepsek-photo::before {
         content: ''; position: absolute;
         top: -20px; right: -20px; width: 80px; height: 80px;
         background: #dbeafe; border-radius: 50%; opacity: .5;
+        z-index: 1; pointer-events: none;
     }
     .quote-mark {
         font-family: 'Playfair Display', serif;
@@ -146,9 +147,15 @@
         height: 200px; display: flex; align-items: center; justify-content: center;
         position: relative; overflow: hidden;
     }
+    .news-thumb img {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; transition: transform .4s ease;
+    }
+    .news-card:hover .news-thumb img { transform: scale(1.05); }
     .news-thumb::after {
         content: ''; position: absolute; inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,.15) 0%, transparent 60%);
+        background: linear-gradient(to top, rgba(0,0,0,.35) 0%, rgba(0,0,0,.05) 60%);
+        z-index: 1;
     }
     .news-kategori {
         display: inline-flex; align-items: center; gap: 4px;
@@ -189,15 +196,32 @@
         position: relative; cursor: pointer;
         transition: transform .3s, box-shadow .3s;
     }
+    .gallery-item img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform .4s ease;
+    }
     .gallery-item:hover { transform: scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.15); }
+    .gallery-item:hover img { transform: scale(1.06); }
     .gallery-item .overlay {
         position: absolute; inset: 0;
-        background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center;
-        transition: background .3s;
+        background: rgba(0,0,0,0);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: flex-end;
+        transition: background .3s; padding: 14px;
     }
-    .gallery-item:hover .overlay { background: rgba(0,0,0,.2); }
-    .gallery-item:hover .overlay i { opacity: 1; transform: scale(1); }
-    .gallery-item .overlay i { opacity: 0; transform: scale(.8); transition: all .3s; color: white; font-size: 24px; }
+    .gallery-item:hover .overlay { background: rgba(15,23,42,.45); }
+    .gallery-item .overlay i {
+        opacity: 0; transform: scale(.8) translateY(-6px);
+        transition: all .3s; color: white; font-size: 22px;
+    }
+    .gallery-item .overlay .gal-label {
+        opacity: 0; transform: translateY(6px);
+        transition: all .3s; color: white;
+        font-size: 11px; font-weight: 700; margin-top: 6px;
+        text-align: center;
+    }
+    .gallery-item:hover .overlay i { opacity: 1; transform: scale(1) translateY(0); }
+    .gallery-item:hover .overlay .gal-label { opacity: 1; transform: translateY(0); }
 
     /* ── LAYANAN ── */
     .layanan-card {
@@ -254,7 +278,12 @@
         <div class="slides-track" id="slidesTrack">
 
             {{-- ── Slide 1: Selamat Datang ── --}}
-            <div class="slide-item" style="min-width:100%">
+            <div class="slide-item" style="min-width:100%; position:relative;">
+                {{-- Hero bg image --}}
+                <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+                    <img src="https://picsum.photos/seed/school1/1400/600"
+                         style="width:100%;height:100%;object-fit:cover;opacity:.15;" alt="" loading="eager">
+                </div>
                 <div class="max-w-7xl mx-auto px-8 py-20 flex flex-col md:flex-row items-center gap-10 relative z-10">
                     <div class="flex-1">
                         <div class="hero-badge">
@@ -306,7 +335,11 @@
             </div>
 
             {{-- ── Slide 2: E-Learning SIMAS ── --}}
-            <div class="slide-item" style="min-width:100%; background: linear-gradient(135deg, #0c1445 0%, #1e3a8a 50%, #1d4ed8 100%);">
+            <div class="slide-item" style="min-width:100%; background: linear-gradient(135deg, #0c1445 0%, #1e3a8a 50%, #1d4ed8 100%); position:relative;">
+                <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+                    <img src="https://picsum.photos/seed/elearning2/1400/600"
+                         style="width:100%;height:100%;object-fit:cover;opacity:.1;" alt="" loading="lazy">
+                </div>
                 <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
                 <div class="max-w-7xl mx-auto px-8 py-20 relative z-10">
                     <div class="hero-badge" style="color: #93C5FD; background: rgba(147,197,253,.15); border-color: rgba(147,197,253,.3);">
@@ -331,7 +364,11 @@
             </div>
 
             {{-- ── Slide 3: PPDB ── --}}
-            <div class="slide-item" style="min-width:100%; background: linear-gradient(135deg, #052e16 0%, #14532d 50%, #15803d 100%);">
+            <div class="slide-item" style="min-width:100%; background: linear-gradient(135deg, #052e16 0%, #14532d 50%, #15803d 100%); position:relative;">
+                <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+                    <img src="https://picsum.photos/seed/ppdb3/1400/600"
+                         style="width:100%;height:100%;object-fit:cover;opacity:.1;" alt="" loading="lazy">
+                </div>
                 <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
                 <div class="max-w-7xl mx-auto px-8 py-20 relative z-10">
                     <div class="hero-badge" style="color: #86EFAC; background: rgba(134,239,172,.15); border-color: rgba(134,239,172,.3);">
@@ -461,7 +498,9 @@
             {{-- Foto --}}
             <div class="flex-shrink-0 text-center mx-auto md:mx-0">
                 <div class="kepsek-photo mx-auto">
-                    <i class="fa fa-user-tie text-gray-200 relative z-10" style="font-size: 80px;"></i>
+                    <img src="https://picsum.photos/seed/principal42/400/480"
+                         alt="Foto Kepala Sekolah"
+                         loading="lazy">
                 </div>
                 <div class="mt-5 text-center">
                     <p class="font-bold text-gray-900 text-base">{{ $sekolah?->kepala_sekolah ?? 'Nama Kepala Sekolah' }}</p>
@@ -570,16 +609,20 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @php
                 $newsColors = [
-                    ['thumb'=>'from-blue-100 to-sky-200',      'dot'=>'text-blue-300',  'badge'=>'bg-blue-50 text-blue-700',   'link'=>'text-blue-700'],
-                    ['thumb'=>'from-indigo-100 to-blue-200',   'dot'=>'text-indigo-300','badge'=>'bg-indigo-50 text-indigo-700','link'=>'text-indigo-700'],
-                    ['thumb'=>'from-emerald-100 to-green-200', 'dot'=>'text-green-300', 'badge'=>'bg-green-50 text-green-700', 'link'=>'text-green-700'],
+                    ['badge'=>'bg-blue-50 text-blue-700',   'link'=>'text-blue-700'],
+                    ['badge'=>'bg-indigo-50 text-indigo-700','link'=>'text-indigo-700'],
+                    ['badge'=>'bg-emerald-50 text-emerald-700', 'link'=>'text-emerald-700'],
                 ];
+                // Seeds buat gambar berita yang berbeda-beda
+                $newsSeeds = ['classroom10', 'students20', 'school30'];
             @endphp
             @foreach ($pengumuman as $idx => $p)
-            @php $nc = $newsColors[$idx % 3]; @endphp
+            @php $nc = $newsColors[$idx % 3]; $seed = $newsSeeds[$idx % 3]; @endphp
             <div class="news-card">
-                <div class="news-thumb bg-gradient-to-br {{ $nc['thumb'] }}">
-                    <i class="fa fa-newspaper text-6xl {{ $nc['dot'] }} opacity-60 relative z-10"></i>
+                <div class="news-thumb">
+                    <img src="https://picsum.photos/seed/{{ $seed }}/600/400"
+                         alt="{{ $p->judul }}"
+                         loading="lazy">
                 </div>
                 <div class="p-6">
                     <div class="flex items-center gap-2 mb-3">
@@ -737,26 +780,26 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             @php
                 $galeri = [
-                    ['bg'=>'from-blue-100 to-sky-200',       'tc'=>'text-blue-300',   'label'=>'Upacara Bendera'],
-                    ['bg'=>'from-indigo-100 to-blue-200',    'tc'=>'text-indigo-300', 'label'=>'Kegiatan Belajar'],
-                    ['bg'=>'from-emerald-100 to-green-200',  'tc'=>'text-green-300',  'label'=>'Ekstrakulikuler'],
-                    ['bg'=>'from-amber-100 to-yellow-200',   'tc'=>'text-amber-400',  'label'=>'Prestasi Siswa'],
-                    ['bg'=>'from-purple-100 to-violet-200',  'tc'=>'text-purple-300', 'label'=>'Pentas Seni'],
-                    ['bg'=>'from-pink-100 to-rose-200',      'tc'=>'text-pink-300',   'label'=>'Olahraga'],
-                    ['bg'=>'from-teal-100 to-cyan-200',      'tc'=>'text-teal-300',   'label'=>'Adiwiyata'],
-                    ['bg'=>'from-cyan-100 to-blue-200',      'tc'=>'text-cyan-300',   'label'=>'Literasi'],
+                    ['seed'=>'upacara11', 'label'=>'Upacara Bendera'],
+                    ['seed'=>'belajar22', 'label'=>'Kegiatan Belajar'],
+                    ['seed'=>'ekstra33',  'label'=>'Ekstrakulikuler'],
+                    ['seed'=>'prestasi44','label'=>'Prestasi Siswa'],
+                    ['seed'=>'seni55',    'label'=>'Pentas Seni'],
+                    ['seed'=>'olahraga66','label'=>'Olahraga'],
+                    ['seed'=>'lingk77',   'label'=>'Adiwiyata'],
+                    ['seed'=>'buku88',    'label'=>'Literasi'],
                 ];
             @endphp
             @foreach ($galeri as $g)
-            <div class="gallery-item bg-gradient-to-br {{ $g['bg'] }}">
-                <div class="w-full h-full flex flex-col items-center justify-center p-4">
-                    <i class="fa fa-image {{ $g['tc'] }} text-4xl mb-2"></i>
-                    <p class="text-xs {{ $g['tc'] }} font-semibold text-center opacity-75">{{ $g['label'] }}</p>
-                </div>
+            <a href="{{ route('galeri.foto') }}" class="gallery-item">
+                <img src="https://picsum.photos/seed/{{ $g['seed'] }}/400/400"
+                     alt="{{ $g['label'] }}"
+                     loading="lazy">
                 <div class="overlay">
                     <i class="fa fa-expand-alt"></i>
+                    <span class="gal-label">{{ $g['label'] }}</span>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </div>
@@ -895,32 +938,18 @@
         function goSlide(n) {
             cur = (n + total) % total;
             track.style.transform = `translateX(-${cur * 100}%)`;
-
-            dots.forEach((d, i) => {
-                d.classList.toggle('active', i === cur);
-            });
+            dots.forEach((d, i) => d.classList.toggle('active', i === cur));
         }
 
-        function slideBy(d) {
-            goSlide(cur + d);
-        }
+        function slideBy(d) { goSlide(cur + d); }
 
-        // ⬇️ bikin global supaya onclick bisa akses
         window.goSlide = goSlide;
         window.slideBy = slideBy;
 
-        // auto slide
-        function startAutoSlide() {
-            autoSlide = setInterval(() => slideBy(1), 5500);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlide);
-        }
+        function startAutoSlide() { autoSlide = setInterval(() => slideBy(1), 5500); }
+        function stopAutoSlide()  { clearInterval(autoSlide); }
 
         startAutoSlide();
-
-        // pause saat hover (biar UX lebih enak)
         if (track) {
             track.addEventListener('mouseenter', stopAutoSlide);
             track.addEventListener('mouseleave', startAutoSlide);
@@ -928,29 +957,21 @@
 
         // ── COUNTER ──
         const statsEl = document.getElementById('stats-section');
-
         if (statsEl) {
             const observer = new IntersectionObserver(entries => {
                 if (!entries[0].isIntersecting) return;
-
                 document.querySelectorAll('[data-count]').forEach(el => {
                     const target = +el.dataset.count;
-                    const step = Math.max(1, Math.ceil(target / 60));
-                    let current = 0;
-
-                    const timer = setInterval(() => {
+                    const step   = Math.max(1, Math.ceil(target / 60));
+                    let current  = 0;
+                    const timer  = setInterval(() => {
                         current = Math.min(current + step, target);
                         el.textContent = current.toLocaleString('id-ID');
-
-                        if (current >= target) {
-                            clearInterval(timer);
-                        }
+                        if (current >= target) clearInterval(timer);
                     }, 20);
                 });
-
-                observer.disconnect(); // biar ga jalan berulang
+                observer.disconnect();
             }, { threshold: 0.3 });
-
             observer.observe(statsEl);
         }
 

@@ -240,7 +240,7 @@
                     $hero_stats = [
                         ['val'=>'±1965','lbl'=>'Tahun Berdiri','ico'=>'fa-flag'],
                         ['val'=>'59+',  'lbl'=>'Tahun Berdiri','ico'=>'fa-history'],
-                        ['val'=>'A',    'lbl'=>'Akreditasi',   'ico'=>'fa-star'],
+                        ['val'=>'B',    'lbl'=>'Akreditasi',   'ico'=>'fa-star'],
                     ];
                 @endphp
                 @foreach ($hero_stats as $hs)
@@ -303,7 +303,7 @@
                                     ['lbl'=>'Didirikan',    'val'=>'Tahun 1965'],
                                     ['lbl'=>'NPSN',         'val'=>'20533972'],
                                     ['lbl'=>'Status',       'val'=>'Negeri / Pemerintah'],
-                                    ['lbl'=>'Akreditasi',   'val'=>'A — Sangat Baik'],
+                                    ['lbl'=>'Akreditasi',   'val'=>'B — Cukup Baik'],
                                     ['lbl'=>'Kurikulum',    'val'=>'Kurikulum Merdeka'],
                                     ['lbl'=>'Kecamatan',    'val'=>'Mojoroto, Kota Kediri'],
                                 ];
@@ -333,7 +333,7 @@
                     $stats = [
                         ['val'=>'±59','unit'=>'Tahun','lbl'=>'Berdiri & Melayani','ico'=>'fa-history','color'=>'blue','accent'=>'after:bg-blue-500'],
                         ['val'=>'5.000+','unit'=>'Alumni','lbl'=>'Telah Diluluskan','ico'=>'fa-user-graduate','color'=>'indigo','accent'=>'after:bg-indigo-500'],
-                        ['val'=>'A','unit'=>'Akreditasi','lbl'=>'BAN-SM Kemdikbud','ico'=>'fa-award','color'=>'amber','accent'=>'after:bg-amber-500'],
+                        ['val'=>'B','unit'=>'Akreditasi','lbl'=>'BAN-SM Kemdikbud','ico'=>'fa-award','color'=>'amber','accent'=>'after:bg-amber-500'],
                         ['val'=>'2022','unit'=>'Tahun','lbl'=>'Platform SIMAS Lahir','ico'=>'fa-laptop','color'=>'green','accent'=>'after:bg-green-500'],
                     ];
                     $sc = [

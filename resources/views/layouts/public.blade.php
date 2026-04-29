@@ -135,8 +135,7 @@
                         Berita <i class="fa fa-chevron-down text-xs opacity-50 ml-0.5"></i>
                     </button>
                     <div class="dropdown">
-                        <a href="{{ route('berita.index') }}">Berita Sekolah</a>
-                        <a href="{{ route('berita.pengumuman') }}">Pengumuman</a>
+                        <a href="{{ route('berita.index') }}">Berita & Pengumuman</a>
                         <a href="{{ route('berita.agenda') }}">Agenda Kegiatan</a>
                         <a href="{{ route('berita.info-dinas') }}">Info Dinas Pendidikan</a>
                     </div>
