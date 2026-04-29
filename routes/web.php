@@ -45,7 +45,7 @@ use App\Http\Controllers\Siswa\{
     AbsensiController as SiswaAbsensi
 };
 
-// Controllers public baru
+// ─── PUBLIC CONTROLLERS ───────────────────────────────────────────────────────
 use App\Http\Controllers\Public\ProfilController;
 use App\Http\Controllers\Public\AkademikController;
 use App\Http\Controllers\Public\BeritaController;
@@ -53,22 +53,25 @@ use App\Http\Controllers\Public\GaleriController;
 use App\Http\Controllers\Public\PpdbController;
 use App\Http\Controllers\Public\LayananController;
 
-// ─── PUBLIC ──────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// PUBLIC
+// ═══════════════════════════════════════════════════════════════════════════════
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Profil
+// ── Profil ────────────────────────────────────────────────────────────────────
 Route::prefix('profil')->name('profil.')->group(function () {
-    Route::get('/visi-misi',   [ProfilController::class, 'visiMisi'])->name('visi-misi');
-    Route::get('/sejarah',     [ProfilController::class, 'sejarah'])->name('sejarah');
-    Route::get('/struktur',    [ProfilController::class, 'struktur'])->name('struktur');
-    Route::get('/komite',      [ProfilController::class, 'komite'])->name('komite');
-    Route::get('/guru',        [ProfilController::class, 'guru'])->name('guru');
-    Route::get('/sarana',      [ProfilController::class, 'sarana'])->name('sarana');
-    Route::get('/akreditasi',  [ProfilController::class, 'akreditasi'])->name('akreditasi');
-    Route::get('/prestasi',    [ProfilController::class, 'prestasi'])->name('prestasi');
+    Route::get('/visi-misi',  [ProfilController::class, 'visiMisi'])->name('visi-misi');
+    Route::get('/sejarah',    [ProfilController::class, 'sejarah'])->name('sejarah');
+    Route::get('/struktur',   [ProfilController::class, 'struktur'])->name('struktur');
+    Route::get('/komite',     [ProfilController::class, 'komite'])->name('komite');
+    Route::get('/guru',       [ProfilController::class, 'guru'])->name('guru');
+    Route::get('/sarana',     [ProfilController::class, 'sarana'])->name('sarana');
+    Route::get('/akreditasi', [ProfilController::class, 'akreditasi'])->name('akreditasi');
+    Route::get('/prestasi',   [ProfilController::class, 'prestasi'])->name('prestasi');
 });
 
-// Akademik
+// ── Akademik ──────────────────────────────────────────────────────────────────
 Route::prefix('akademik')->name('akademik.')->group(function () {
     Route::get('/kurikulum',       [AkademikController::class, 'kurikulum'])->name('kurikulum');
     Route::get('/kalender',        [AkademikController::class, 'kalender'])->name('kalender');
@@ -77,7 +80,7 @@ Route::prefix('akademik')->name('akademik.')->group(function () {
     Route::get('/literasi',        [AkademikController::class, 'literasi'])->name('literasi');
 });
 
-// Berita — urutan spesifik harus di atas /{id}
+// ── Berita (route spesifik harus di atas /{id}) ───────────────────────────────
 Route::prefix('berita')->name('berita.')->group(function () {
     Route::get('/',           [BeritaController::class, 'index'])->name('index');
     Route::get('/pengumuman', [BeritaController::class, 'pengumuman'])->name('pengumuman');
@@ -86,13 +89,13 @@ Route::prefix('berita')->name('berita.')->group(function () {
     Route::get('/{id}',       [BeritaController::class, 'show'])->name('show');
 });
 
-// Galeri
+// ── Galeri ────────────────────────────────────────────────────────────────────
 Route::prefix('galeri')->name('galeri.')->group(function () {
     Route::get('/foto',  [GaleriController::class, 'foto'])->name('foto');
     Route::get('/video', [GaleriController::class, 'video'])->name('video');
 });
 
-// PPDB
+// ── PPDB ──────────────────────────────────────────────────────────────────────
 Route::prefix('ppdb')->name('ppdb.')->group(function () {
     Route::get('/informasi', [PpdbController::class, 'info'])->name('info');
     Route::get('/syarat',    [PpdbController::class, 'syarat'])->name('syarat');
@@ -100,7 +103,7 @@ Route::prefix('ppdb')->name('ppdb.')->group(function () {
     Route::get('/alur',      [PpdbController::class, 'alur'])->name('alur');
 });
 
-// Layanan
+// ── Layanan ───────────────────────────────────────────────────────────────────
 Route::prefix('layanan')->name('layanan.')->group(function () {
     Route::get('/mutasi',  [LayananController::class, 'mutasi'])->name('mutasi');
     Route::get('/surat',   [LayananController::class, 'surat'])->name('surat');
@@ -111,63 +114,82 @@ Route::prefix('layanan')->name('layanan.')->group(function () {
     Route::get('/alumni',  [LayananController::class, 'alumni'])->name('alumni');
 });
 
-// ─── AUTH ────────────────────────────────────────────────────────────────────
-Route::get('/', fn() => redirect()->route('login'));
+// ═══════════════════════════════════════════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════════════════════════════════════════
+
 Route::get('/login',  [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout',[LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// ─── PASSWORD RESET ───────────────────────────────────────────────────────────
-Route::get('/forgot-password',          [LoginController::class, 'showForgotForm'])->name('password.request');
-Route::post('/forgot-password',         [LoginController::class, 'sendResetLink'])->name('password.email');
-Route::get('/reset-password/{token}',   [LoginController::class, 'showResetForm'])->name('password.reset');
-Route::post('/reset-password',          [LoginController::class, 'resetPassword'])->name('password.store');
+// ── Password Reset ────────────────────────────────────────────────────────────
+Route::get('/forgot-password',        [LoginController::class, 'showForgotForm'])->name('password.request');
+Route::post('/forgot-password',       [LoginController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [LoginController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password',        [LoginController::class, 'resetPassword'])->name('password.store');
 
-// ─── ADMIN ───────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// ADMIN
+// ═══════════════════════════════════════════════════════════════════════════════
+
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
 
+    // Siswa
     Route::resource('siswa', SiswaController::class);
 
-    // Guru
-    Route::get('/guru',             [GuruController::class, 'index'])->name('guru.index');
-    Route::post('/guru',            [GuruController::class, 'store'])->name('guru.store');
-    Route::put('/guru/{guru}',      [GuruController::class, 'update'])->name('guru.update');
-    Route::delete('/guru/{guru}',   [GuruController::class, 'destroy'])->name('guru.destroy');
-    Route::get('/guru/export',      [GuruController::class, 'export'])->name('guru.export');
-    Route::post('/guru/import',     [GuruController::class, 'import'])->name('guru.import');
+    // Guru (manual — tambahan export/import)
+    Route::get('/guru',           [GuruController::class, 'index'])->name('guru.index');
+    Route::post('/guru',          [GuruController::class, 'store'])->name('guru.store');
+    Route::put('/guru/{guru}',    [GuruController::class, 'update'])->name('guru.update');
+    Route::delete('/guru/{guru}', [GuruController::class, 'destroy'])->name('guru.destroy');
+    Route::get('/guru/export',    [GuruController::class, 'export'])->name('guru.export');
+    Route::post('/guru/import',   [GuruController::class, 'import'])->name('guru.import');
 
+    // Kelas
     Route::resource('kelas', KelasController::class);
 
     // Mata Pelajaran
-    Route::get('/mata-pelajaran',                       [MataPelajaranController::class, 'index'])->name('mata-pelajaran.index');
-    Route::post('/mata-pelajaran',                      [MataPelajaranController::class, 'store'])->name('mata-pelajaran.store');
-    Route::put('/mata-pelajaran/{mata_pelajaran}',      [MataPelajaranController::class, 'update'])->name('mata-pelajaran.update');
-    Route::delete('/mata-pelajaran/{mata_pelajaran}',   [MataPelajaranController::class, 'destroy'])->name('mata-pelajaran.destroy');
+    Route::get('/mata-pelajaran',                     [MataPelajaranController::class, 'index'])->name('mata-pelajaran.index');
+    Route::post('/mata-pelajaran',                    [MataPelajaranController::class, 'store'])->name('mata-pelajaran.store');
+    Route::put('/mata-pelajaran/{mata_pelajaran}',    [MataPelajaranController::class, 'update'])->name('mata-pelajaran.update');
+    Route::delete('/mata-pelajaran/{mata_pelajaran}', [MataPelajaranController::class, 'destroy'])->name('mata-pelajaran.destroy');
 
+    // Pengumuman
     Route::resource('pengumuman', PengumumanController::class);
 
-    Route::get('/sekolah',  [SekolahController::class, 'index'])->name('sekolah');
-    Route::put('/sekolah',  [SekolahController::class, 'update'])->name('sekolah.update');
+    // Pengaturan Sekolah
+    Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah');
+    Route::put('/sekolah', [SekolahController::class, 'update'])->name('sekolah.update');
 });
 
-// ─── GURU ────────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// GURU
+// ═══════════════════════════════════════════════════════════════════════════════
+
 Route::prefix('guru')->name('guru.')->middleware(['auth', 'role:guru'])->group(function () {
+
     Route::get('/dashboard', [GuruDashboard::class, 'index'])->name('dashboard');
 
-    // ── LAMA ──────────────────────────────────────────────────────────────────
+    // Absensi
     Route::resource('absensi', AbsensiController::class);
-    Route::resource('nilai',   NilaiController::class);
-    Route::resource('materi',  MateriController::class);
+
+    // Nilai
+    Route::resource('nilai', NilaiController::class);
+
+    // Materi
+    Route::resource('materi', MateriController::class);
+
+    // MBG
     Route::get('/mbg', [MbgController::class, 'index'])->name('mbg');
 
-    // ── BARU: Tugas ───────────────────────────────────────────────────────────
+    // Tugas
     Route::resource('tugas', GuruTugas::class);
-    Route::get('/tugas/{tugas}/penilaian',      [GuruTugas::class, 'penilaian'])->name('tugas.penilaian');
-    Route::post('/tugas/{tugas}/simpan-nilai',  [GuruTugas::class, 'simpanNilai'])->name('tugas.simpan-nilai');
+    Route::get('/tugas/{tugas}/penilaian',     [GuruTugas::class, 'penilaian'])->name('tugas.penilaian');
+    Route::post('/tugas/{tugas}/simpan-nilai', [GuruTugas::class, 'simpanNilai'])->name('tugas.simpan-nilai');
 
-    // ── BARU: Forum Diskusi ───────────────────────────────────────────────────
+    // Forum Diskusi
     Route::get('/forum',                        [GuruForum::class, 'index'])->name('forum.index');
     Route::post('/forum',                       [GuruForum::class, 'store'])->name('forum.store');
     Route::get('/forum/{forum}',                [GuruForum::class, 'show'])->name('forum.show');
@@ -177,39 +199,47 @@ Route::prefix('guru')->name('guru.')->middleware(['auth', 'role:guru'])->group(f
     Route::patch('/forum/{forum}/pin',          [GuruForum::class, 'togglePin'])->name('forum.pin');
 });
 
-// ─── WALI MURID ──────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// WALI MURID
+// ═══════════════════════════════════════════════════════════════════════════════
+
 Route::prefix('wali')->name('wali.')->middleware(['auth', 'role:wali_murid'])->group(function () {
+
     Route::get('/dashboard', [WaliDashboard::class, 'index'])->name('dashboard');
 
-    // ── LAMA ──────────────────────────────────────────────────────────────────
-    Route::get('/raport',     [RaportWaliController::class,  'index'])->name('raport');
-    Route::get('/kehadiran',  [KehadiranWaliController::class, 'index'])->name('kehadiran');
+    // Raport & Kehadiran
+    Route::get('/raport',    [RaportWaliController::class,    'index'])->name('raport');
+    Route::get('/kehadiran', [KehadiranWaliController::class, 'index'])->name('kehadiran');
 
-    // ── BARU: Tugas Anak ──────────────────────────────────────────────────────
+    // Tugas Anak
     Route::get('/tugas', [TugasWaliController::class, 'index'])->name('tugas');
 
-    // ── BARU: Pengumuman ──────────────────────────────────────────────────────
-    Route::get('/pengumuman',               [PengumumanWaliController::class, 'index'])->name('pengumuman.index');
-    Route::get('/pengumuman/{pengumuman}',  [PengumumanWaliController::class, 'show'])->name('pengumuman.show');
+    // Pengumuman
+    Route::get('/pengumuman',              [PengumumanWaliController::class, 'index'])->name('pengumuman.index');
+    Route::get('/pengumuman/{pengumuman}', [PengumumanWaliController::class, 'show'])->name('pengumuman.show');
 });
 
-// ─── SISWA ───────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// SISWA
+// ═══════════════════════════════════════════════════════════════════════════════
+
 Route::prefix('siswa')->name('siswa.')->middleware(['auth', 'role:siswa'])->group(function () {
+
     Route::get('/dashboard', [SiswaDashboard::class, 'index'])->name('dashboard');
 
-    // ── LAMA ──────────────────────────────────────────────────────────────────
+    // E-Learning & Raport
     Route::get('/elearning', [ElearningController::class,  'index'])->name('elearning');
     Route::get('/raport',    [RaportSiswaController::class, 'index'])->name('raport');
 
-    // ── BARU: Materi ──────────────────────────────────────────────────────────
-    Route::get('/materi',           [SiswaMateri::class, 'index'])->name('materi.index');
-    Route::get('/materi/{materi}',  [SiswaMateri::class, 'show'])->name('materi.show');
+    // Materi
+    Route::get('/materi',          [SiswaMateri::class, 'index'])->name('materi.index');
+    Route::get('/materi/{materi}', [SiswaMateri::class, 'show'])->name('materi.show');
 
-    // ── BARU: Tugas ───────────────────────────────────────────────────────────
-    Route::get('/tugas',                        [SiswaTugas::class, 'index'])->name('tugas.index');
-    Route::get('/tugas/{tugas}',                [SiswaTugas::class, 'show'])->name('tugas.show');
-    Route::post('/tugas/{tugas}/kumpulkan',     [SiswaTugas::class, 'kumpulkan'])->name('tugas.kumpulkan');
+    // Tugas
+    Route::get('/tugas',                    [SiswaTugas::class, 'index'])->name('tugas.index');
+    Route::get('/tugas/{tugas}',            [SiswaTugas::class, 'show'])->name('tugas.show');
+    Route::post('/tugas/{tugas}/kumpulkan', [SiswaTugas::class, 'kumpulkan'])->name('tugas.kumpulkan');
 
-    // ── BARU: Absensi ─────────────────────────────────────────────────────────
+    // Absensi
     Route::get('/absensi', [SiswaAbsensi::class, 'index'])->name('absensi.index');
 });
