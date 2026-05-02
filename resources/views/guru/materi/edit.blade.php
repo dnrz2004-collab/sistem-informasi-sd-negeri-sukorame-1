@@ -153,7 +153,7 @@
                 <dt style="color:var(--text-muted);">Mata Pelajaran</dt>
                 <dd style="margin:0;">{{ $materi->mataPelajaran->nama ?? '-' }}</dd>
                 <dt style="color:var(--text-muted);">Kelas</dt>
-                <dd style="margin:0;">{{ $materi->kelas->nama ?? '-' }}</dd>
+                <dd style="margin:0;">{{ $materi->kelas->nama_kelas ?? '-' }}</dd>
             </dl>
         </div>
     </div>

@@ -101,8 +101,7 @@
                     <dd style="margin:0;font-weight:600;">{{ $materi->mataPelajaran->nama ?? '-' }}</dd>
 
                     <dt style="color:var(--text-muted);">Kelas</dt>
-                    <dd style="margin:0;font-weight:600;">{{ $materi->kelas->nama ?? '-' }}</dd>
-
+                    <dd style="margin:0;font-weight:600;">{{ $materi->kelas->nama_kelas ?? '-' }}</dd>
                     <dt style="color:var(--text-muted);">Tipe</dt>
                     <dd style="margin:0;"><span class="badge {{ $cfg['badge'] }}">{{ $cfg['label'] }}</span></dd>
 
