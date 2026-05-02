@@ -34,6 +34,20 @@
                 @endforeach
             </select>
         </div>
+
+        {{-- TAMBAHKAN FILTER KELAS DI SINI --}}
+        <div class="filter-group">
+            <label class="filter-label"><i class="fas fa-school"></i> Kelas</label>
+            <select name="kelas_id" class="filter-select" onchange="this.form.submit()">
+                <option value="">Semua Kelas</option>
+                @foreach($kelas as $k)
+                    <option value="{{ $k->id }}" {{ request('kelas_id') == $k->id ? 'selected' : '' }}>
+                        {{ $k->nama_kelas }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="filter-group">
             <label class="filter-label"><i class="fas fa-tag"></i> Tipe</label>
             <select name="tipe" class="filter-select" onchange="this.form.submit()">
@@ -43,7 +57,8 @@
                 <option value="video" {{ request('tipe') == 'video' ? 'selected' : '' }}>Video</option>
             </select>
         </div>
-        @if(request()->hasAny(['mata_pelajaran_id','tipe']))
+        
+        @if(request()->hasAny(['mata_pelajaran_id','kelas_id','tipe']))
             <a href="{{ route('guru.materi.index') }}" class="btn-reset-filter">
                 <i class="fas fa-times"></i> Reset
             </a>
@@ -79,7 +94,7 @@
                         @endif
                     </td>
                     <td style="font-size:13px;">{{ $item->mataPelajaran->nama ?? '-' }}</td>
-                    <td style="font-size:13px;">{{ $item->kelas->nama ?? '-' }}</td>
+                    <td style="font-size:13px;">{{ $item->kelas->nama_kelas ?? '-' }}</td>
                     <td>
                         @php
                             $tipeConfig = [

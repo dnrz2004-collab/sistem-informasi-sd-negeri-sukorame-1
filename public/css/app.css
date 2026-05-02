@@ -827,29 +827,50 @@ select.form-control {
 
 /* ── ACTION BUTTONS ── */
 /* app.css punya .btn-icon, .btn-edit, .btn-delete — alias & tambahan */
+/* Update atau Tambah di app.css */
 .action-buttons {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     justify-content: center;
+    align-items: center;
 }
 
-.btn-view {
-    width: 30px;
-    height: 30px;
-    border-radius: 6px;
+/* Gunakan class .btn-action biar sesuai sama Blade kamu */
+.btn-action {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     transition: all var(--transition);
-    color: var(--primary);
-    background: var(--primary-light);
-    text-decoration: none;
+    text-decoration: none; /* Biar tag <a> nggak ada garis bawah */
 }
 
-.btn-view:hover { background: var(--primary); color: white; }
+/* Warna-warna tombolnya */
+.btn-view   { color: var(--primary); background: var(--primary-light); }
+.btn-edit   { color: var(--warning); background: #fff3e0; }
+.btn-delete { color: var(--danger); background: #fef2f2; }
+
+/* Hover Effect */
+.btn-view:hover   { background: var(--primary); color: white; }
+.btn-edit:hover   { background: var(--warning); color: white; }
+.btn-delete:hover { background: var(--danger); color: white; }
+
+/* Reset khusus buat form di dalam tabel biar nggak nambahin space */
+.action-buttons form {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
 
 /* ── PAGINATION WRAPPER ── */
 /* app.css punya .pagination-wrapper — override Laravel nav styling */
