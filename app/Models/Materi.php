@@ -13,6 +13,7 @@ class Materi extends Model
         'deskripsi',
         'file',
         'link_video',
+        'kelas_id', // Tambahin ini!
         'mata_pelajaran_id',
         'guru_id',
         'tipe',
@@ -31,5 +32,12 @@ class Materi extends Model
     public function guru()
     {
         return $this->belongsTo(Guru::class, 'guru_id');
+    }
+
+    // app/Models/Materi.php
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 }

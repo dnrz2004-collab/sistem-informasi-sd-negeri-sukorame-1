@@ -13,21 +13,32 @@ class MateriController extends Controller
     {
         $guru = auth()->user()->guru;
         $mapel = MataPelajaran::where('guru_id', $guru->id)->get();
+        
+        // TAMBAHIN INI: Biar di view index bisa looping pilihan kelas buat filter
+        $kelas = Kelas::orderBy('nama_kelas')->get(); 
 
         $query = Materi::with(['mataPelajaran', 'kelas'])
             ->where('guru_id', $guru->id);
 
+        // Filter Mapel
         if ($request->filled('mata_pelajaran_id')) {
             $query->where('mata_pelajaran_id', $request->mata_pelajaran_id);
         }
 
+        // TAMBAHIN INI: Biar filter kelasnya fungsi beneran
+        if ($request->filled('kelas_id')) {
+            $query->where('kelas_id', $request->kelas_id);
+        }
+
+        // Filter Tipe
         if ($request->filled('tipe')) {
             $query->where('tipe', $request->tipe);
         }
 
         $materi = $query->latest()->paginate(12)->withQueryString();
 
-        return view('guru.materi.index', compact('materi', 'mapel'));
+        // Lempar variabel $kelas ke view
+        return view('guru.materi.index', compact('materi', 'mapel', 'kelas'));
     }
 
     public function create()
